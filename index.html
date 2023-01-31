@@ -11,12 +11,12 @@
         <h2>Base Color</h2>
         <div>
             <label for="base_color">base color (#rrggbb): </label
-            ><input type="text" name="base_color" id="base_color" value="#75A3DD" />
+            ><input type="text" name="base_color" id="base_color" value="#75A3DD" required />
         </div>
         <div>
             <label for="palette_size">palette size (hue x tone): </label
-            ><input type="number" name="palette_size" id="palette_size_hue" value="20" step="1" min="1" /> x
-            <input type="number" name="palette_size" id="palette_size_tone" value="5" step="1" min="1" />
+            ><input type="number" name="palette_size" id="palette_size_hue" value="20" step="1" min="1" required /> x
+            <input type="number" name="palette_size" id="palette_size_tone" value="5" step="1" min="1" required />
         </div>
         <button id="generate_button">Generate color palette</button>
         <div id="palette"></div>
