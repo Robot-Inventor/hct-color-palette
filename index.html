@@ -14,8 +14,9 @@
             ><input type="text" name="base_color" id="base_color" value="#75A3DD" />
         </div>
         <div>
-            <label for="palette_size">palette size: </label
-            ><input type="number" name="palette_size" id="palette_size" value="20" step="1" min="1" />
+            <label for="palette_size">palette size (hue x tone): </label
+            ><input type="number" name="palette_size" id="palette_size_hue" value="20" step="1" min="1" /> x
+            <input type="number" name="palette_size" id="palette_size_tone" value="5" step="1" min="1" />
         </div>
         <button id="generate_button">Generate color palette</button>
         <div id="palette"></div>
@@ -27,15 +28,17 @@
 
             #palette {
                 display: flex;
+                flex-direction: column;
                 width: max-content;
             }
 
-            #palette > div {
+            #palette > div > div {
                 width: 2rem;
                 height: 2rem;
                 border-radius: 0.2rem;
                 margin-right: 0.25rem;
                 cursor: pointer;
+                display: inline-block;
             }
         </style>
         <script src="./dist/main.js"></script>
