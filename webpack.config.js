@@ -44,9 +44,14 @@ module.exports = {
         new HtmlWebpackPlugin({
             chunks: ["figma/dist/ui_script"],
             filename: "./figma/dist/ui.html",
-            template: "./figma/ui.html",
-            inject: "body",
-            cache: false
+            template: "./common/ui.html",
+            inject: "body"
+        }),
+        new HtmlWebpackPlugin({
+            chunks: ["site/dist/script"],
+            filename: "./site/dist/index.html",
+            template: "./common/ui.html",
+            inject: "body"
         }),
         new HtmlInlineScriptPlugin()
     ]

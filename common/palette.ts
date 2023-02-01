@@ -1,13 +1,13 @@
 import { argbFromHex, hexFromArgb, Hct } from "@material/material-color-utilities";
 
-const generate_palette = (base_color: string, palette_size_hue: number, palette_size_tone: number) => {
+const generate_palette = (base_color: string, palette_size_hue: number, palette_size_tone: number): palette => {
     const hue_step = 360 / palette_size_hue;
     const tone_step = 100 / palette_size_tone;
     const color = Hct.fromInt(argbFromHex(base_color));
     const base_chroma = color.chroma;
     const base_tone = color.tone;
-    const hue_list = [];
-    const palette = [];
+    const hue_list: Array<number> = [];
+    const palette: palette = [];
 
     // Generate a list of hue values
     hue_list.push(color.hue);
@@ -68,4 +68,44 @@ const generate_palette = (base_color: string, palette_size_hue: number, palette_
     return palette;
 };
 
-export { generate_palette };
+const render_palette = (outer_element: HTMLElement, palette: palette) => {
+    // Remove old palette
+    while (outer_element.firstChild) {
+        outer_element.removeChild(outer_element.firstChild);
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    for (const row of palette) {
+        const row_outer = document.createElement("div");
+        fragment.appendChild(row_outer);
+
+        for (const color of row.colors) {
+            const div = document.createElement("div");
+            div.style.background = color.hex;
+            div.title = color.hex;
+            if (color.isBaseColor) {
+                div.classList.add("base_color");
+            }
+            row_outer.appendChild(div);
+        }
+    }
+
+    outer_element.appendChild(fragment);
+};
+
+const sort_palette = (palette: palette) => {
+    palette.sort((a, b) => {
+        return parseFloat(b.tone.toString()) - parseFloat(a.tone.toString());
+    });
+
+    for (let i = 0; i < palette.length; i++) {
+        palette[i].colors.sort((a, b) => {
+            return parseFloat(a.hue.toString()) - parseFloat(b.hue.toString());
+        });
+    }
+
+    return palette;
+};
+
+export { generate_palette, render_palette, sort_palette };
