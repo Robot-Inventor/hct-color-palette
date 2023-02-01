@@ -25,10 +25,6 @@ Second, set up a local server and open ``site/index.html``.
 npm run build
 ```
 
-## Troubleshooting
-
-Be sure to use Node.js v18 or lower; if you use Node.js v19 or higher, import errors will occur in ``@material/material-color-utilities``.
-
 ## References
 
 - [The Science of Color & Design - Material Design](https://material.io/blog/science-of-color-design)
