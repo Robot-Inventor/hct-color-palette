@@ -1,0 +1,101 @@
+:root {
+    --theme-color: rgb(45, 86, 220);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: sans-serif;
+    color: #333;
+    width: 100vw;
+}
+
+body {
+    padding: 1rem;
+}
+
+h1 {
+    margin-bottom: 0.5em;
+}
+
+form {
+    margin: 0.5rem 0;
+}
+
+form > * {
+    margin-top: 1rem;
+}
+
+input {
+    border: none;
+    border-bottom: solid 0.1rem var(--theme-color);
+}
+
+input[type="number"] {
+    width: 3rem;
+}
+
+button {
+    margin: 1rem;
+    margin-left: 0;
+    background: none;
+    border: none;
+    border-radius: 3rem;
+    padding: 0.75rem 2rem;
+    cursor: pointer;
+    background: var(--theme-color);
+    color: white;
+    box-shadow: 0.4px 0.4px 0.5px rgba(45, 86, 220, 0.056), 1px 1px 1.3px rgba(45, 86, 220, 0.081),
+        1.9px 1.9px 2.4px rgba(45, 86, 220, 0.1), 3.4px 3.4px 4.2px rgba(45, 86, 220, 0.119),
+        6.3px 6.3px 7.9px rgba(45, 86, 220, 0.144), 15px 15px 19px rgba(45, 86, 220, 0.2);
+}
+
+#palette {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    width: max-content;
+    padding: 0.25rem;
+}
+
+#palette > div {
+    display: flex;
+    margin-top: 0.25rem;
+}
+
+#palette > div:first-of-type {
+    margin-top: 0;
+}
+
+#palette > div > div {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.2rem;
+    margin-right: 0.25rem;
+    cursor: pointer;
+    display: inline-block;
+}
+
+#palette > div > div.base_color {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+#palette > div > div.base_color::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0.1rem solid #666;
+    width: calc(100% + 0.2rem);
+    height: calc(100% + 0.2rem);
+    border-radius: 0.2rem;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./style.css" />
+        <title>HCT Color Palette</title>
+    </head>
+    <body>
+        <h1>HCT Color Palette</h1>
+        <form>
+            <div>
+                <label for="base_color">base color (#rrggbb): </label
+                ><input type="text" name="base_color" id="base_color" value="#75A3DD" required />
+            </div>
+            <div>
+                <label for="palette_size">palette size (hue x tone): </label
+                ><input type="number" name="palette_size" id="palette_size_hue" value="20" step="1" min="1" required />
+                x
+                <input type="number" name="palette_size" id="palette_size_tone" value="5" step="1" min="1" required />
+            </div>
+        </form>
+        <button id="generate_button">Generate color palette</button>
+        <button id="sort_button">Sort color palette</button>
+        <button id="download_button">Download color palette</button>
+        <div id="palette"></div>
+        <script src="./dist/script.js"></script>
+    </body>
+</html>

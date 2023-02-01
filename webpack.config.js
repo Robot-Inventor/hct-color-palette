@@ -1,6 +1,14 @@
+const path = require("path");
+
 module.exports = {
-    mode: "development",
-    entry: "./index.ts",
+    mode: "production",
+    entry: {
+        "site/dist/script": "./site/script.ts"
+    },
+    output: {
+        filename: "[name].js",
+        path: __dirname,
+    },
     module: {
         rules: [
             {
