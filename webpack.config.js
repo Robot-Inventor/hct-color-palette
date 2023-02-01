@@ -3,7 +3,8 @@ const path = require("path");
 module.exports = {
     mode: "production",
     entry: {
-        "site/dist/script": "./site/script.ts"
+        "site/dist/script": "./site/script.ts",
+        "figma/dist/code": "./figma/code.ts",
     },
     output: {
         filename: "[name].js",

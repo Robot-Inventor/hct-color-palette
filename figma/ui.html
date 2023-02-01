@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Easy Palette</title>
+    </head>
+    <body>
+        <h1>Easy Palette</h1>
+        <form>
+            <div>
+                <label for="base_color">base color (#rrggbb): </label>
+                <div id="base_color_preview"></div>
+                <input type="color" name="base_color" id="base_color_picker" value="#75A3DD" required />
+                <input type="text" name="base_color" id="base_color" value="#75A3DD" required />
+            </div>
+            <div>
+                <label for="palette_size">palette size (hue x tone): </label
+                ><input type="number" name="palette_size" id="palette_size_hue" value="20" step="1" min="1" required />
+                x
+                <input type="number" name="palette_size" id="palette_size_tone" value="5" step="1" min="1" required />
+            </div>
+        </form>
+        <button id="generate_button">Generate color palette</button>
+        <button id="sort_button">Sort color palette</button>
+        <button id="insert_button">Insert to Figma</button>
+        <div id="palette"></div>
+        <style>
+            :root {
+                --theme-color: var(--figma-color-bg-brand);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                font-family: sans-serif;
+                background: var(--figma-color-bg);
+                color: var(--figma-color-text);
+                width: 100vw;
+            }
+
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                margin-bottom: 0.5em;
+            }
+
+            form {
+                margin: 0.5rem 0;
+            }
+
+            form > * {
+                margin-top: 1rem;
+            }
+
+            input[type="text"],
+            input[type="number"] {
+                border: none;
+                border-bottom: solid 0.15rem var(--figma-color-text);
+                background: var(--figma-color-bg-secondary);
+                color: inherit;
+                padding: 0.3rem;
+                border-radius: 0.25rem;
+                outline: none;
+                transition: 0.3s;
+            }
+
+            input[type="text"]:focus,
+            input[type="number"]:focus {
+                border-color: var(--figma-color-border-selected);
+            }
+
+            input[type="number"] {
+                width: 3rem;
+            }
+
+            button {
+                margin: 1rem;
+                margin-left: 0;
+                border: none;
+                border-radius: 0.25rem;
+                padding: 0.7rem 1rem;
+                cursor: pointer;
+                background: var(--theme-color);
+                color: white;
+            }
+
+            #base_color_preview {
+                width: 1.5rem;
+                height: 1.5rem;
+                border-radius: 0.2rem;
+                margin-right: 0.25rem;
+                display: inline-block;
+                background: #75a3dd;
+                border: solid 0.1rem var(--figma-color-bg-inverse);
+                vertical-align: middle;
+                cursor: pointer;
+            }
+
+            #base_color_picker {
+                display: none;
+            }
+
+            #palette {
+                display: flex;
+                flex-wrap: nowrap;
+                flex-direction: column;
+                width: max-content;
+                padding: 0.25rem;
+            }
+
+            #palette > div {
+                display: flex;
+                margin-top: 0.25rem;
+            }
+
+            #palette > div:first-of-type {
+                margin-top: 0;
+            }
+
+            #palette > div > div {
+                width: 2rem;
+                height: 2rem;
+                border-radius: 0.2rem;
+                margin-right: 0.25rem;
+                cursor: pointer;
+                display: inline-block;
+            }
+
+            #palette > div > div.base_color {
+                position: relative;
+                top: 0;
+                left: 0;
+            }
+
+            #palette > div > div.base_color::before {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border: 0.1rem solid var(--figma-color-bg-inverse);
+                width: calc(100% + 0.2rem);
+                height: calc(100% + 0.2rem);
+                border-radius: 0.2rem;
+            }
+        </style>
+        <script>
+            const base_color_input = document.getElementById("base_color");
+            const base_color_picker = document.getElementById("base_color_picker");
+            const base_color_preview = document.getElementById("base_color_preview");
+
+            base_color_input.addEventListener("input", () => {
+                base_color_preview.style.background = base_color_input.value;
+            });
+
+            base_color_preview.addEventListener("click", () => {
+                base_color_picker.click();
+            });
+
+            base_color_picker.addEventListener("input", () => {
+                base_color_input.value = base_color_picker.value;
+                base_color_preview.style.background = base_color_picker.value;
+            });
+
+            const generate_button = document.getElementById("generate_button");
+            const palette_size_hue = document.getElementById("palette_size_hue");
+            const palette_size_tone = document.getElementById("palette_size_tone");
+
+            generate_button.addEventListener("click", () => {
+                const base_color = base_color_input.value;
+                const message = {
+                    type: "generate",
+                    base_color,
+                    palette_size_hue: palette_size_hue.value,
+                    palette_size_tone: palette_size_tone.value
+                };
+                parent.postMessage({ pluginMessage: message }, "*");
+            });
+
+            const palette_outer = document.getElementById("palette");
+            let palette = [];
+            const render_palette = (outer_element, palette) => {
+                while (outer_element.firstChild) {
+                    outer_element.removeChild(outer_element.firstChild);
+                }
+
+                for (const row of palette) {
+                    const row_outer = document.createElement("div");
+                    row_outer.dataset.tone = row.tone.toString();
+
+                    for (const color of row.colors) {
+                        const div = document.createElement("div");
+                        div.style.background = color.hex;
+                        div.title = color.hex;
+                        div.dataset.hue = color.hue.toString();
+                        if (color.isBaseColor) {
+                            div.classList.add("base_color");
+                        }
+                        row_outer.appendChild(div);
+                    }
+
+                    outer_element.appendChild(row_outer);
+                }
+            };
+
+            onmessage = (event) => {
+                palette = event.data.pluginMessage;
+                render_palette(palette_outer, palette);
+            };
+
+            const sort_button = document.getElementById("sort_button");
+
+            sort_button.addEventListener("click", () => {
+                palette.sort((a, b) => {
+                    return parseFloat(b.tone) - parseFloat(a.tone);
+                });
+
+                for (let i = 0; i < palette.length; i++) {
+                    palette[i].colors.sort((a, b) => {
+                        return parseFloat(a.hue) - parseFloat(b.hue);
+                    });
+                }
+
+                render_palette(palette_outer, palette);
+            });
+
+            const insert_button = document.getElementById("insert_button");
+            insert_button.addEventListener("click", () => {
+                parent.postMessage({ pluginMessage: { type: "insert", palette } }, "*");
+            });
+        </script>
+    </body>
+</html>
