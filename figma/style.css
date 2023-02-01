@@ -1,9 +1,11 @@
 :root {
     --text-color: var(--figma-color-text, #191919);
+    --text-color-danger: var(--figma-color-text-danger, #dc3412);
     --background-color: var(--figma-color-bg, #fff);
     --background-color-secondary: var(--figma-color-bg-secondary, #f5f5f5);
     --background-color-inverse: var(--figma-color-bg-inverse, #2c2c2c);
     --border-color-selected: var(--figma-color-border-selected, #0d99ff);
+    --border-color-danger: var(--figma-color-border-danger-strong, #dc3412);
     --primary-color: var(--figma-color-bg-brand, #0d99ff);
 }
 
@@ -54,6 +56,13 @@ input[type="text"]:focus,
 input[type="number"]:focus,
 input:not([type]):focus {
     border-color: var(--border-color-selected);
+}
+
+input[type="text"]:invalid,
+input[type="number"]:invalid,
+input:not([type]):invalid {
+    border-color: var(--border-color-danger);
+    color: var(--text-color-danger);
 }
 
 input[type="number"] {

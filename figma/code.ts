@@ -6,9 +6,7 @@ figma.ui.onmessage = (msg) => {
     if (msg.type === "generate") {
         const palette = generate_palette(msg.base_color, msg.palette_size_hue, msg.palette_size_tone);
         figma.ui.postMessage(palette);
-    }
-
-    if (msg.type === "insert") {
+    } else if (msg.type === "insert") {
         const rect_size = 100;
         const rect_margin = 25;
         const rect_corner_radius = 10;
@@ -70,5 +68,7 @@ figma.ui.onmessage = (msg) => {
 
         figma.currentPage.selection = nodes;
         figma.viewport.scrollAndZoomIntoView(nodes);
+    } else if (msg.type === "notify") {
+        figma.notify(msg.message, msg.option);
     }
 };

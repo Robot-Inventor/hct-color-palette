@@ -13,7 +13,14 @@
                 <label for="base_color">base color (#rrggbb): </label>
                 <div id="base_color_preview"></div>
                 <input type="color" name="base_color" id="base_color_picker" value="#75A3DD" required />
-                <input type="text" name="base_color" id="base_color" value="#75A3DD" required />
+                <input
+                    type="text"
+                    name="base_color"
+                    id="base_color"
+                    value="#75A3DD"
+                    pattern="^#([a-fA-F0-9]{3}){1,2}$"
+                    required
+                />
             </div>
             <div>
                 <label for="palette_size">palette size (hue x tone): </label

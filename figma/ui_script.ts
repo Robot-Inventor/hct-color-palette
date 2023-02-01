@@ -25,6 +25,26 @@ const palette_size_tone = document.getElementById("palette_size_tone");
 
 generate_button.addEventListener("click", () => {
     const base_color = base_color_input.value;
+
+    const is_valid =
+        base_color_input.checkValidity() && palette_size_hue.checkValidity() && palette_size_tone.checkValidity();
+    if (!is_valid) {
+        parent.postMessage(
+            {
+                pluginMessage: {
+                    type: "notify",
+                    message: "Parameters are invalid. Please check the form.",
+                    option: {
+                        error: true,
+                        timeout: 5000
+                    }
+                }
+            },
+            "*"
+        );
+        return;
+    }
+
     const message = {
         type: "generate",
         base_color,
