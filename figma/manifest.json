@@ -6,5 +6,5 @@
   "editorType": [
     "figma"
   ],
-  "ui": "ui.html"
+  "ui": "dist/ui.html"
 }

@@ -1,0 +1,133 @@
+:root {
+    --text-color: var(--figma-color-text, #191919);
+    --background-color: var(--figma-color-bg, #fff);
+    --background-color-secondary: var(--figma-color-bg-secondary, #f5f5f5);
+    --background-color-inverse: var(--figma-color-bg-inverse, #2c2c2c);
+    --border-color-selected: var(--figma-color-border-selected, #0d99ff);
+    --primary-color: var(--figma-color-bg-brand, #0d99ff);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+    width: 100vw;
+}
+
+body {
+    padding: 1rem;
+}
+
+h1 {
+    margin-bottom: 0.5em;
+}
+
+form {
+    margin: 0.5rem 0;
+}
+
+form > * {
+    margin-top: 1rem;
+}
+
+input[type="text"],
+input[type="number"],
+input:not([type]) {
+    border: none;
+    border-bottom: solid 0.15rem var(--text-color);
+    background: var(--background-color-secondary);
+    color: inherit;
+    padding: 0.3rem;
+    border-radius: 0.25rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input:not([type]):focus {
+    border-color: var(--border-color-selected);
+}
+
+input[type="number"] {
+    width: 3rem;
+}
+
+button {
+    margin: 1rem;
+    margin-left: 0;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    background: var(--primary-color);
+    color: white;
+}
+
+#base_color_preview {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 0.2rem;
+    margin-right: 0.25rem;
+    display: inline-block;
+    background: #75a3dd;
+    border: solid 0.1rem var(--background-color-inverse);
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+#base_color_picker {
+    display: none;
+}
+
+#palette {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    width: max-content;
+    padding: 0.25rem;
+}
+
+#palette > div {
+    display: flex;
+    margin-top: 0.25rem;
+}
+
+#palette > div:first-of-type {
+    margin-top: 0;
+}
+
+#palette > div > div {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.2rem;
+    margin-right: 0.25rem;
+    cursor: pointer;
+    display: inline-block;
+}
+
+#palette > div > div.base_color {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+#palette > div > div.base_color::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0.1rem solid var(--background-color-inverse);
+    width: calc(100% + 0.2rem);
+    height: calc(100% + 0.2rem);
+    border-radius: 0.2rem;
+}
