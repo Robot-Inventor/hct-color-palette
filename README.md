@@ -1,8 +1,8 @@
-# hct-color-palette
+# Smart Chroma
 
 ![screenshot](screenshot.png)
 
-HCT Color Palette generates a color palette by changing hue while preserving visual lightness and saturation. However, numerical lightness and saturation are not constant.
+Smart Chroma generates a color palette by changing hue while preserving visual lightness and saturation. However, numerical lightness and saturation are not constant.
 
 This tool was inspired by [Color Space](https://www.figma.com/community/plugin/1105513882835626049) and uses the [HCT color space](https://material.io/blog/science-of-color-design) internally.
 

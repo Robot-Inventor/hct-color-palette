@@ -1,7 +1,7 @@
 {
-  "name": "hct-color-palette",
+  "name": "smart-chroma",
   "version": "1.0.0",
-  "description": "HCT based color palette tool",
+  "description": "HCT based color palette tool.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
