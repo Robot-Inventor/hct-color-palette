@@ -1,6 +1,6 @@
 # Smart Chroma
 
-![screenshot](screenshot.png)
+![cover image](image/cover.png)
 
 Smart Chroma generates a color palette by changing hue while preserving visual lightness and saturation. However, numerical lightness and saturation are not constant.
 
