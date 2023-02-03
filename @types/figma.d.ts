@@ -1,19 +1,31 @@
-type generate_message = {
+/**
+ * Message to generate palette data.
+ */
+type generateMessage = {
     type: "generate";
-    base_color: string;
-    palette_size_hue: number;
-    palette_size_tone: number;
+    baseColor: string;
+    hueSize: number;
+    toneSize: number;
 };
 
-type insert_message = {
+/**
+ * Message to insert palette to Figma document.
+ */
+type insertMessage = {
     type: "insert";
     palette: palette;
 };
 
-type notify_message = {
+/**
+ * Message to display a notification to the user.
+ */
+type notifyMessage = {
     type: "notify";
     message: string;
     option: NotificationOptions;
 };
 
-type message = generate_message | insert_message | notify_message;
+/**
+ * Type of the messages sent from UI to backend script.
+ */
+type message = generateMessage | insertMessage | notifyMessage;

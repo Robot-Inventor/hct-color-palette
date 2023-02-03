@@ -1,34 +1,37 @@
-import { generate_palette } from "../common/palette";
+import { generatePalette } from "../common/palette";
 
 figma.showUI(__html__, { width: 800, height: 600, themeColors: true });
 
 figma.ui.onmessage = (msg: message) => {
     switch (msg.type) {
         case "generate":
-            const palette = generate_palette(msg.base_color, msg.palette_size_hue, msg.palette_size_tone);
+            const palette = generatePalette(msg.baseColor, msg.hueSize, msg.toneSize);
             figma.ui.postMessage(palette);
             break;
 
         case "insert":
-            const rect_size = 100;
-            const rect_margin = 25;
-            const rect_corner_radius = 10;
+            const RECT_SIZE = 100;
+            const RECT_MARGIN = 25;
+            const RECT_CORNER_RADIUS = 10;
 
-            const nodes: SceneNode[] = [];
+            const nodeList: SceneNode[] = [];
 
+            /**
+             * Frame for outer of palette.
+             */
             const frame = figma.createFrame();
-            const frame_width = (rect_size + rect_margin) * msg.palette[0].colors.length + rect_margin;
-            const frame_height = (rect_size + rect_margin) * msg.palette.length + rect_margin;
-            frame.resize(frame_width, frame_height);
+            const frameWidth = (RECT_SIZE + RECT_MARGIN) * msg.palette[0].colors.length + RECT_MARGIN;
+            const frameHeight = (RECT_SIZE + RECT_MARGIN) * msg.palette.length + RECT_MARGIN;
+            frame.resize(frameWidth, frameHeight);
             frame.name = "Easy Palette";
             figma.currentPage.appendChild(frame);
-            nodes.push(frame);
+            nodeList.push(frame);
 
-            let x = rect_margin;
-            let y = rect_margin;
+            let x = RECT_MARGIN;
+            let y = RECT_MARGIN;
 
             for (const row of msg.palette) {
-                x = rect_margin;
+                x = RECT_MARGIN;
 
                 for (const color of row.colors) {
                     const hex = color.hex;
@@ -39,38 +42,43 @@ figma.ui.onmessage = (msg: message) => {
                     const rect = figma.createRectangle();
                     rect.x = x;
                     rect.y = y;
-                    rect.resize(rect_size, rect_size);
+                    rect.resize(RECT_SIZE, RECT_SIZE);
                     rect.name = hex;
-                    rect.cornerRadius = rect_corner_radius;
+                    rect.cornerRadius = RECT_CORNER_RADIUS;
                     rect.fills = [{ type: "SOLID", color: { r, g, b } }];
 
                     if (color.isBaseColor) {
-                        const border_rect = figma.createRectangle();
-                        border_rect.x = x;
-                        border_rect.y = y;
-                        border_rect.cornerRadius = rect_corner_radius;
-                        border_rect.resize(rect_size, rect_size);
-                        rect.resize(rect_size * 0.9, rect_size * 0.9);
-                        rect.x += rect_size * 0.05;
-                        rect.y += rect_size * 0.05;
-                        border_rect.name = "Base Color Pointer";
-                        border_rect.fills = [];
-                        border_rect.strokes = [{ type: "SOLID", color: { r, g, b } }];
-                        border_rect.strokeAlign = "OUTSIDE";
-                        border_rect.strokeWeight = rect_size * 0.08;
-                        frame.appendChild(border_rect);
+                        /**
+                         * Rect for border representing the basic color.
+                         */
+                        const borderRect = figma.createRectangle();
+
+                        borderRect.x = x;
+                        borderRect.y = y;
+                        borderRect.cornerRadius = RECT_CORNER_RADIUS;
+                        borderRect.resize(RECT_SIZE, RECT_SIZE);
+
+                        rect.resize(RECT_SIZE * 0.9, RECT_SIZE * 0.9);
+                        rect.x += RECT_SIZE * 0.05;
+                        rect.y += RECT_SIZE * 0.05;
+
+                        borderRect.name = "Base Color Pointer";
+                        borderRect.fills = [];
+                        borderRect.strokes = [{ type: "SOLID", color: { r, g, b } }];
+                        borderRect.strokeAlign = "OUTSIDE";
+                        borderRect.strokeWeight = RECT_SIZE * 0.08;
+
+                        frame.appendChild(borderRect);
                     }
 
                     frame.appendChild(rect);
-
-                    x += rect_size + rect_margin;
+                    x += RECT_SIZE + RECT_MARGIN;
                 }
-
-                y += rect_size + rect_margin;
+                y += RECT_SIZE + RECT_MARGIN;
             }
 
-            figma.currentPage.selection = nodes;
-            figma.viewport.scrollAndZoomIntoView(nodes);
+            figma.currentPage.selection = nodeList;
+            figma.viewport.scrollAndZoomIntoView(nodeList);
             break;
 
         case "notify":

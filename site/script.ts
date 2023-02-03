@@ -1,69 +1,64 @@
 import { toPng } from "html-to-image";
-import { generate_palette, render_palette, sort_palette } from "../common/palette";
+import { generatePalette, renderPalette, sortPalette } from "../common/palette";
 import "../common/side_effect";
 import "../common/style.css";
 
-// HCTのトーンはL*a*bの明るさ。HCTの色相と彩度はCAM16の色相と彩度と同じ。
-
-const generate_button = document.querySelector("#generate_button")!;
-const sort_button = document.querySelector("#sort_button")!;
-const base_color_input: HTMLInputElement = document.querySelector("#base_color")!;
-const base_color_picker: HTMLInputElement = document.querySelector("#base_color_picker")!;
-const base_color_preview: HTMLInputElement = document.querySelector("#base_color_preview")!;
-const palette_size_hue_element: HTMLInputElement = document.querySelector("#palette_size_hue")!;
-const palette_size_tone_element: HTMLInputElement = document.querySelector("#palette_size_tone")!;
-const palette_element: HTMLElement = document.querySelector("#palette")!;
-const download_button = document.querySelector("#action_button")!;
+const generateButton = document.querySelector("#generate_button")!;
+const sortButton = document.querySelector("#sort_button")!;
+const baseColorInput: HTMLInputElement = document.querySelector("#base_color")!;
+const baseColorPicker: HTMLInputElement = document.querySelector("#base_color_picker")!;
+const baseColorPreview: HTMLInputElement = document.querySelector("#base_color_preview")!;
+const hueSizeInput: HTMLInputElement = document.querySelector("#palette_size_hue")!;
+const toneSizeInput: HTMLInputElement = document.querySelector("#palette_size_tone")!;
+const paletteOuter: HTMLElement = document.querySelector("#palette")!;
+const downloadButton = document.querySelector("#action_button")!;
 
 let palette: palette = [];
 
-const validate_form = () => {
-    return (
-        base_color_input.checkValidity() &&
-        palette_size_hue_element.checkValidity() &&
-        palette_size_tone_element.checkValidity()
-    );
+downloadButton.textContent = "Download as PNG";
+
+const validateForm = () => {
+    return baseColorInput.checkValidity() && hueSizeInput.checkValidity() && toneSizeInput.checkValidity();
 };
 
-base_color_input.addEventListener("input", () => {
-    base_color_preview.style.background = base_color_input.value;
+baseColorInput.addEventListener("input", () => {
+    baseColorPreview.style.background = baseColorInput.value;
 });
 
-base_color_preview.addEventListener("click", () => {
-    base_color_picker.click();
+baseColorPreview.addEventListener("click", () => {
+    baseColorPicker.click();
 });
 
-base_color_picker.addEventListener("input", () => {
-    base_color_input.value = base_color_picker.value;
-    base_color_preview.style.background = base_color_picker.value;
+baseColorPicker.addEventListener("input", () => {
+    baseColorInput.value = baseColorPicker.value;
+    baseColorPreview.style.background = baseColorPicker.value;
 });
 
-generate_button.addEventListener("click", () => {
-    if (!validate_form()) {
-        const error_message = "Parameters are invalid. Please check the form.";
-        console.error(error_message);
-        alert(error_message);
+generateButton.addEventListener("click", () => {
+    if (!validateForm()) {
+        const errorMessage = "Parameters are invalid. Please check the form.";
+        console.error(errorMessage);
+        alert(errorMessage);
         return;
     }
 
-    const base_color = base_color_input.value;
-    const palette_size_hue = parseInt(palette_size_hue_element.value);
-    const palette_size_tone = parseInt(palette_size_tone_element.value);
-    palette = generate_palette(base_color, palette_size_hue, palette_size_tone);
-    render_palette(palette_element, palette);
+    const baseColor = baseColorInput.value;
+    const hueSize = parseInt(hueSizeInput.value);
+    const toneSize = parseInt(toneSizeInput.value);
+    palette = generatePalette(baseColor, hueSize, toneSize);
+    renderPalette(paletteOuter, palette);
 });
 
-sort_button.addEventListener("click", () => {
-    palette = sort_palette(palette);
-    render_palette(palette_element, palette);
+sortButton.addEventListener("click", () => {
+    palette = sortPalette(palette);
+    renderPalette(paletteOuter, palette);
 });
 
-download_button.textContent = "Download as PNG";
-download_button.addEventListener("click", () => {
+downloadButton.addEventListener("click", () => {
     const a = document.createElement("a");
     a.download = "color_palette.png";
 
-    toPng(palette_element).then((data) => {
+    toPng(paletteOuter).then((data) => {
         a.href = data;
         a.click();
     });
