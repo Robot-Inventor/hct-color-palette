@@ -2,9 +2,11 @@
 
 ![cover image](image/cover.png)
 
-Smart Chroma generates a color palette by changing hue while preserving visual lightness and saturation. However, numerical lightness and saturation are not constant.
+Smart Chroma generates a color palette based on human vision.
 
-This tool was inspired by [Color Space](https://www.figma.com/community/plugin/1105513882835626049) and uses the [HCT color space](https://material.io/blog/science-of-color-design) internally.
+If you create a color palette using a generic color space, the saturation and lightness of the appearance will appear to vary simply by changing the hue. This is because the saturation and lightness of the color space do not take human vision into account. This tool allows you to instantly and easily generate a color palette that takes human vision into account.
+
+This tool is inspired by [Color Space](https://www.figma.com/community/plugin/1105513882835626049) and uses the [HCT color space](https://material.io/blog/science-of-color-design) internally. Source code available on [GitHub](https://github.com/Robot-Inventor/hct-color-palette).
 
 ## Usage
 
