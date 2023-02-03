@@ -23,7 +23,7 @@ figma.ui.onmessage = (msg: message) => {
             const frameWidth = (RECT_SIZE + RECT_MARGIN) * msg.palette[0].colors.length + RECT_MARGIN;
             const frameHeight = (RECT_SIZE + RECT_MARGIN) * msg.palette.length + RECT_MARGIN;
             frame.resize(frameWidth, frameHeight);
-            frame.name = "Easy Palette";
+            frame.name = "Smart Chroma";
             figma.currentPage.appendChild(frame);
             nodeList.push(frame);
 
