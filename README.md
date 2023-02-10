@@ -8,7 +8,13 @@ If you create a color palette using a generic color space, the saturation and li
 
 This tool is inspired by [Color Space](https://www.figma.com/community/plugin/1105513882835626049) and uses the [HCT color space](https://material.io/blog/science-of-color-design) internally. Source code available on [GitHub](https://github.com/Robot-Inventor/hct-color-palette).
 
-## Usage
+## Installation
+
+### Figma Plugin
+
+Just install it from the [Figma Community](https://www.figma.com/community/plugin/1202157980535479255/Smart-Chroma).
+
+### Standalone Version
 
 First, run the following command.
 
