@@ -1,6 +1,6 @@
 import "../common/side_effect";
 import "../common/style.css";
-import { renderPalette, sortPalette } from "../common/palette";
+import { generatePalette, renderPalette, sortPalette } from "../common/palette";
 
 const baseColorInput: HTMLInputElement = document.querySelector("#base_color")!;
 const baseColorPicker: HTMLInputElement = document.querySelector("#base_color_picker")!;
@@ -68,8 +68,9 @@ generateButton.addEventListener("click", () => {
     postMessage(message);
 });
 
-onmessage = (event): void => {
-    palette = event.data.pluginMessage;
+onmessage = (event: MessageEvent<{ pluginMessage: generateMessage }>): void => {
+    const { baseColor, hueSize, toneSize } = event.data.pluginMessage;
+    palette = generatePalette(baseColor, hueSize, toneSize);
     renderPalette(paletteOuter, palette);
 };
 

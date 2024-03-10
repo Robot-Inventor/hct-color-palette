@@ -1,10 +1,7 @@
-import { generatePalette } from "../common/palette";
-
 figma.showUI(__html__, { height: 600, themeColors: true, width: 800 });
 
 const generate = (msg: generateMessage): void => {
-    const palette = generatePalette(msg.baseColor, msg.hueSize, msg.toneSize);
-    figma.ui.postMessage(palette);
+    figma.ui.postMessage(msg);
 };
 
 // eslint-disable-next-line max-lines-per-function, max-statements
