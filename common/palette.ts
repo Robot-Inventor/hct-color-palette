@@ -1,4 +1,4 @@
-import { argbFromHex, hexFromArgb, Hct } from "@material/material-color-utilities";
+import { Hct, argbFromHex, hexFromArgb } from "@material/material-color-utilities";
 
 /**
  * Generate palette data from base color using [HCT color space](https://material.io/blog/science-of-color-design).
@@ -10,9 +10,12 @@ import { argbFromHex, hexFromArgb, Hct } from "@material/material-color-utilitie
  * // Generate a color palette with #75a3dd as the base color, 20 hues and 5 tones.
  * const palette = generatePalette("#75a3dd", 20, 5);
  */
+// eslint-disable-next-line max-lines-per-function, max-statements
 const generatePalette = (baseColor: string, hueSize: number, toneSize: number): palette => {
+    /* eslint-disable no-magic-numbers */
     const hueStep = 360 / hueSize;
     const toneStep = 100 / toneSize;
+    /* eslint-enable no-magic-numbers */
 
     const color = Hct.fromInt(argbFromHex(baseColor));
     const baseChroma = color.chroma;
@@ -23,6 +26,8 @@ const generatePalette = (baseColor: string, hueSize: number, toneSize: number): 
 
     // Generate a list of hue values
     hueList.push(color.hue);
+    /* eslint-disable no-magic-numbers */
+    // eslint-disable-next-line id-length
     for (let i = 0; i < hueSize - 1; i++) {
         if (color.hue + hueStep <= 360) {
             color.hue += hueStep;
@@ -31,6 +36,7 @@ const generatePalette = (baseColor: string, hueSize: number, toneSize: number): 
         }
         hueList.push(color.hue);
     }
+    /* eslint-enable no-magic-numbers */
 
     const row = hueList.map((hue) => {
         color.hue = hue;
@@ -38,23 +44,27 @@ const generatePalette = (baseColor: string, hueSize: number, toneSize: number): 
         color.tone = baseTone;
         return {
             hex: hexFromArgb(color.toInt()),
-            hue: hue,
+            hue,
             isBaseColor: false
         };
     });
     palette.push({
-        tone: baseTone,
-        colors: row
+        colors: row,
+        tone: baseTone
     });
+    /* eslint-disable no-magic-numbers */
+    // eslint-disable-next-line id-length
     for (let i = 0; i < toneSize - 1; i++) {
         if (color.tone + toneStep <= 100) {
             color.tone += toneStep;
         } else {
             color.tone += toneStep - 100;
         }
+        /* eslint-enable no-magic-numbers */
 
-        const tone = color.tone;
+        const { tone } = color;
 
+        // eslint-disable-next-line no-shadow
         const row = hueList.map((hue) => {
             // If chroma and tone are not re-set, their values will shift slightly
             color.hue = hue;
@@ -63,13 +73,13 @@ const generatePalette = (baseColor: string, hueSize: number, toneSize: number): 
 
             return {
                 hex: hexFromArgb(color.toInt()),
-                hue: hue,
+                hue,
                 isBaseColor: false
             };
         });
         palette.push({
-            tone: tone,
-            colors: row
+            colors: row,
+            tone
         });
     }
 
@@ -85,7 +95,8 @@ const generatePalette = (baseColor: string, hueSize: number, toneSize: number): 
  * @param outer Insert palette to this element.
  * @param palette Palette data.
  */
-const renderPalette = (outer: HTMLElement, palette: palette) => {
+// eslint-disable-next-line max-statements
+const renderPalette = (outer: HTMLElement, palette: palette): void => {
     // Remove old palette from the element.
     while (outer.firstChild) {
         outer.removeChild(outer.firstChild);
@@ -94,8 +105,8 @@ const renderPalette = (outer: HTMLElement, palette: palette) => {
     const fragment = document.createDocumentFragment();
 
     for (const row of palette) {
-        const row_outer = document.createElement("div");
-        fragment.appendChild(row_outer);
+        const rowOuter = document.createElement("div");
+        fragment.appendChild(rowOuter);
 
         for (const color of row.colors) {
             const div = document.createElement("div");
@@ -104,7 +115,7 @@ const renderPalette = (outer: HTMLElement, palette: palette) => {
             if (color.isBaseColor) {
                 div.classList.add("base_color");
             }
-            row_outer.appendChild(div);
+            rowOuter.appendChild(div);
         }
     }
 
@@ -116,15 +127,14 @@ const renderPalette = (outer: HTMLElement, palette: palette) => {
  * @param palette Palette data.
  * @returns Sorted palette data.
  */
-const sortPalette = (palette: palette) => {
-    palette.sort((a, b) => {
-        return parseFloat(b.tone.toString()) - parseFloat(a.tone.toString());
-    });
+const sortPalette = (palette: palette): palette => {
+    // eslint-disable-next-line id-length
+    palette.sort((a, b) => parseFloat(b.tone.toString()) - parseFloat(a.tone.toString()));
 
+    // eslint-disable-next-line id-length
     for (let i = 0; i < palette.length; i++) {
-        palette[i].colors.sort((a, b) => {
-            return parseFloat(a.hue.toString()) - parseFloat(b.hue.toString());
-        });
+        // eslint-disable-next-line id-length
+        palette[i].colors.sort((a, b) => parseFloat(a.hue.toString()) - parseFloat(b.hue.toString()));
     }
 
     return palette;

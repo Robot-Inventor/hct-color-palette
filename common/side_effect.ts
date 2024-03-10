@@ -3,12 +3,13 @@
  *       Functions in this file are not intended to be used within this file.
  */
 
-(() => {
+((): void => {
     /**
      * Input element width to automatically change based on input content.
      */
-    const adjustInputWidth = () => {
+    const adjustInputWidth = (): void => {
         document.querySelectorAll("input").forEach((element) => {
+            // eslint-disable-next-line max-statements
             element.addEventListener("input", () => {
                 const inputElementStyle = getComputedStyle(element);
                 const fontSize = parseFloat(inputElementStyle.fontSize.replace("px", ""));

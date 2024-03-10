@@ -1,6 +1,6 @@
-import { renderPalette, sortPalette } from "../common/palette";
 import "../common/side_effect";
 import "../common/style.css";
+import { renderPalette, sortPalette } from "../common/palette";
 
 const baseColorInput: HTMLInputElement = document.querySelector("#base_color")!;
 const baseColorPicker: HTMLInputElement = document.querySelector("#base_color_picker")!;
@@ -20,7 +20,7 @@ insertButton.textContent = "Insert to Figma";
  * Send message to the backend script.
  * @param message Message to be sent.
  */
-const postMessage = (message: message) => {
+const postMessage = (message: message): void => {
     parent.postMessage({ pluginMessage: message }, "*");
 };
 
@@ -28,9 +28,8 @@ const postMessage = (message: message) => {
  * Check all form values are valid.
  * @returns Validation result.
  */
-const validate_form = () => {
-    return baseColorInput.checkValidity() && hueSizeInput.checkValidity() && toneSizeInput.checkValidity();
-};
+const validateForm = (): boolean =>
+    baseColorInput.checkValidity() && hueSizeInput.checkValidity() && toneSizeInput.checkValidity();
 
 baseColorInput.addEventListener("input", () => {
     baseColorPreview.style.background = baseColorInput.value;
@@ -46,14 +45,14 @@ baseColorPicker.addEventListener("input", () => {
 });
 
 generateButton.addEventListener("click", () => {
-    if (!validate_form()) {
+    if (!validateForm()) {
         const message: message = {
-            type: "notify",
             message: "Parameters are invalid. Please check the form.",
             option: {
                 error: true,
                 timeout: 5000
-            }
+            },
+            type: "notify"
         } as const;
         postMessage(message);
         return;
@@ -61,15 +60,15 @@ generateButton.addEventListener("click", () => {
 
     const baseColor = baseColorInput.value;
     const message = {
-        type: "generate",
-        baseColor: baseColor,
-        hueSize: parseInt(hueSizeInput.value),
-        toneSize: parseInt(toneSizeInput.value)
+        baseColor,
+        hueSize: parseInt(hueSizeInput.value, 10),
+        toneSize: parseInt(toneSizeInput.value, 10),
+        type: "generate"
     } as const;
     postMessage(message);
 });
 
-onmessage = (event) => {
+onmessage = (event): void => {
     palette = event.data.pluginMessage;
     renderPalette(paletteOuter, palette);
 };
@@ -80,5 +79,5 @@ sortButton.addEventListener("click", () => {
 });
 
 insertButton.addEventListener("click", () => {
-    postMessage({ type: "insert", palette });
+    postMessage({ palette, type: "insert" });
 });

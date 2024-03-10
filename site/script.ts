@@ -1,7 +1,7 @@
-import { toPng } from "html-to-image";
-import { generatePalette, renderPalette, sortPalette } from "../common/palette";
 import "../common/side_effect";
 import "../common/style.css";
+import { generatePalette, renderPalette, sortPalette } from "../common/palette";
+import { toPng } from "html-to-image";
 
 const generateButton = document.querySelector("#generate_button")!;
 const sortButton = document.querySelector("#sort_button")!;
@@ -17,9 +17,8 @@ let palette: palette = [];
 
 downloadButton.textContent = "Download as PNG";
 
-const validateForm = () => {
-    return baseColorInput.checkValidity() && hueSizeInput.checkValidity() && toneSizeInput.checkValidity();
-};
+const validateForm = (): boolean =>
+    baseColorInput.checkValidity() && hueSizeInput.checkValidity() && toneSizeInput.checkValidity();
 
 baseColorInput.addEventListener("input", () => {
     baseColorPreview.style.background = baseColorInput.value;
@@ -37,14 +36,16 @@ baseColorPicker.addEventListener("input", () => {
 generateButton.addEventListener("click", () => {
     if (!validateForm()) {
         const errorMessage = "Parameters are invalid. Please check the form.";
+        // eslint-disable-next-line no-console
         console.error(errorMessage);
+        // eslint-disable-next-line no-alert
         alert(errorMessage);
         return;
     }
 
     const baseColor = baseColorInput.value;
-    const hueSize = parseInt(hueSizeInput.value);
-    const toneSize = parseInt(toneSizeInput.value);
+    const hueSize = parseInt(hueSizeInput.value, 10);
+    const toneSize = parseInt(toneSizeInput.value, 10);
     palette = generatePalette(baseColor, hueSize, toneSize);
     renderPalette(paletteOuter, palette);
 });
@@ -55,11 +56,11 @@ sortButton.addEventListener("click", () => {
 });
 
 downloadButton.addEventListener("click", () => {
-    const a = document.createElement("a");
-    a.download = "color_palette.png";
+    const anchor = document.createElement("a");
+    anchor.download = "color_palette.png";
 
-    toPng(paletteOuter).then((data) => {
-        a.href = data;
-        a.click();
+    void toPng(paletteOuter).then((data) => {
+        anchor.href = data;
+        anchor.click();
     });
 });
