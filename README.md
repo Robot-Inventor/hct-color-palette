@@ -33,6 +33,24 @@ Second, set up a local server and open ``site/dist/index.html``.
 npm run build
 ```
 
+### Lint
+
+```powershell
+npm run lint
+```
+
+### Format
+
+```powershell
+npm run format
+```
+
+or
+
+```powershell
+npm run format:check
+```
+
 ## References
 
 - [The Science of Color & Design - Material Design](https://material.io/blog/science-of-color-design)
