@@ -33,6 +33,16 @@ Second, set up a local server and open ``site/dist/index.html``.
 npm run build
 ```
 
+### NOTE
+
+Do not update ``@material/material-color-utilities`` to v0.2.5 or later. If you update it, no error occurs at build time, but an error occurs when loading it into Figma.
+
+> Syntax error on line 2: Unexpected token ?
+
+It seems to be related to the import of the ``Hct()`` class, but details are unknown.
+
+It is possible that this issue will be resolved in the future, but at least in v0.2.7 this error occurs. If anyone knows of a solution to this issue, please let me know.
+
 ## References
 
 - [The Science of Color & Design - Material Design](https://material.io/blog/science-of-color-design)
