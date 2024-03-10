@@ -13,7 +13,7 @@ const toneSizeInput: HTMLInputElement = document.querySelector("#palette_size_to
 const paletteOuter: HTMLElement = document.querySelector("#palette")!;
 const downloadButton = document.querySelector("#action_button")!;
 
-let palette: palette = [];
+let palette: Palette = [];
 
 downloadButton.textContent = "Download as PNG";
 

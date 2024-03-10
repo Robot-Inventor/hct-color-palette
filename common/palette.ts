@@ -11,7 +11,7 @@ import { Hct, argbFromHex, hexFromArgb } from "@material/material-color-utilitie
  * const palette = generatePalette("#75a3dd", 20, 5);
  */
 // eslint-disable-next-line max-lines-per-function, max-statements
-const generatePalette = (baseColor: string, hueSize: number, toneSize: number): palette => {
+const generatePalette = (baseColor: string, hueSize: number, toneSize: number): Palette => {
     /* eslint-disable no-magic-numbers */
     const hueStep = 360 / hueSize;
     const toneStep = 100 / toneSize;
@@ -22,7 +22,7 @@ const generatePalette = (baseColor: string, hueSize: number, toneSize: number): 
     const baseTone = color.tone;
 
     const hueList: Array<number> = [];
-    const palette: palette = [];
+    const palette: Palette = [];
 
     // Generate a list of hue values
     hueList.push(color.hue);
@@ -96,7 +96,7 @@ const generatePalette = (baseColor: string, hueSize: number, toneSize: number): 
  * @param palette Palette data.
  */
 // eslint-disable-next-line max-statements
-const renderPalette = (outer: HTMLElement, palette: palette): void => {
+const renderPalette = (outer: HTMLElement, palette: Palette): void => {
     // Remove old palette from the element.
     while (outer.firstChild) {
         outer.removeChild(outer.firstChild);
@@ -127,7 +127,7 @@ const renderPalette = (outer: HTMLElement, palette: palette): void => {
  * @param palette Palette data.
  * @returns Sorted palette data.
  */
-const sortPalette = (palette: palette): palette => {
+const sortPalette = (palette: Palette): Palette => {
     // eslint-disable-next-line id-length
     palette.sort((a, b) => parseFloat(b.tone.toString()) - parseFloat(a.tone.toString()));
 

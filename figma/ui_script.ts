@@ -12,7 +12,7 @@ const paletteOuter = document.getElementById("palette")!;
 const sortButton = document.getElementById("sort_button")!;
 const insertButton = document.getElementById("action_button")!;
 
-let palette: palette = [];
+let palette: Palette = [];
 
 insertButton.textContent = "Insert to Figma";
 
@@ -20,7 +20,7 @@ insertButton.textContent = "Insert to Figma";
  * Send message to the backend script.
  * @param message Message to be sent.
  */
-const postMessage = (message: message): void => {
+const postMessage = (message: Message): void => {
     parent.postMessage({ pluginMessage: message }, "*");
 };
 
@@ -46,7 +46,7 @@ baseColorPicker.addEventListener("input", () => {
 
 generateButton.addEventListener("click", () => {
     if (!validateForm()) {
-        const message: message = {
+        const message: Message = {
             message: "Parameters are invalid. Please check the form.",
             option: {
                 error: true,
@@ -68,11 +68,11 @@ generateButton.addEventListener("click", () => {
     postMessage(message);
 });
 
-onmessage = (event: MessageEvent<{ pluginMessage: generateMessage }>): void => {
+window.addEventListener("message", (event: MessageEvent<{ pluginMessage: MessageGenerate }>) => {
     const { baseColor, hueSize, toneSize } = event.data.pluginMessage;
     palette = generatePalette(baseColor, hueSize, toneSize);
     renderPalette(paletteOuter, palette);
-};
+});
 
 sortButton.addEventListener("click", () => {
     palette = sortPalette(palette);

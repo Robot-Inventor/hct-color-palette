@@ -1,11 +1,11 @@
 figma.showUI(__html__, { height: 600, themeColors: true, width: 800 });
 
-const generate = (msg: generateMessage): void => {
+const generate = (msg: MessageGenerate): void => {
     figma.ui.postMessage(msg);
 };
 
 // eslint-disable-next-line max-lines-per-function, max-statements
-const insert = (msg: insertMessage): void => {
+const insert = (msg: MessageInsert): void => {
     const RECT_SIZE = 100;
     const RECT_MARGIN = 25;
     const RECT_CORNER_RADIUS = 10;
@@ -84,7 +84,7 @@ const insert = (msg: insertMessage): void => {
     figma.viewport.scrollAndZoomIntoView(nodeList);
 };
 
-figma.ui.onmessage = (msg: message): void => {
+figma.ui.onmessage = (msg: Message): void => {
     switch (msg.type) {
         case "generate":
             generate(msg);
