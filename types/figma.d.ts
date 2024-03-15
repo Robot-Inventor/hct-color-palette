@@ -1,3 +1,5 @@
+import { PaletteData } from "../common/palette";
+
 /**
  * Message to generate palette data.
  */
@@ -13,7 +15,7 @@ type MessageGenerate = {
  */
 type MessageInsert = {
     type: "insert";
-    palette: Palette;
+    palette: PaletteData;
 };
 
 /**
@@ -29,3 +31,5 @@ type MessageNotify = {
  * Type of the messages sent from UI to backend script.
  */
 type Message = MessageGenerate | MessageInsert | MessageNotify;
+
+export { Message, MessageGenerate, MessageInsert, MessageNotify };

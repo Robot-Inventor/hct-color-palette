@@ -1,3 +1,5 @@
+import { Message, MessageGenerate, MessageInsert } from "../types/figma";
+
 figma.showUI(__html__, { height: 600, themeColors: true, width: 800 });
 
 const generate = (msg: MessageGenerate): void => {

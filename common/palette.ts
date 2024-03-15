@@ -167,4 +167,4 @@ class Palette {
     }
 }
 
-export { Palette };
+export { PaletteData, Palette };

@@ -1,5 +1,6 @@
 import "../common/side_effect";
 import "../common/style.css";
+import { Message, MessageGenerate } from "../types/figma";
 import { Palette } from "../common/palette";
 
 const baseColorInput: HTMLInputElement = document.querySelector("#base_color")!;
@@ -80,5 +81,7 @@ sortButton.addEventListener("click", () => {
 });
 
 insertButton.addEventListener("click", () => {
-    postMessage({ palette: palette.getPalette(), type: "insert" });
+    const paletteData = palette.getPalette();
+    if (!paletteData) throw new Error("Palette data is not generated.");
+    postMessage({ palette: paletteData, type: "insert" });
 });
