@@ -1,16 +1,6 @@
 import { PaletteData } from "../common/palette";
 
 /**
- * Message to generate palette data.
- */
-type MessageGenerate = {
-    type: "generate";
-    baseColor: string;
-    hueSize: number;
-    toneSize: number;
-};
-
-/**
  * Message to insert palette to Figma document.
  */
 type MessageInsert = {
@@ -30,6 +20,6 @@ type MessageNotify = {
 /**
  * Type of the messages sent from UI to backend script.
  */
-type Message = MessageGenerate | MessageInsert | MessageNotify;
+type Message = MessageInsert | MessageNotify;
 
-export { Message, MessageGenerate, MessageInsert, MessageNotify };
+export { Message, MessageInsert, MessageNotify };

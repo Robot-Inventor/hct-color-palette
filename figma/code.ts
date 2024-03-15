@@ -1,10 +1,6 @@
-import { Message, MessageGenerate, MessageInsert } from "../types/figma";
+import { Message, MessageInsert } from "../types/figma";
 
 figma.showUI(__html__, { height: 600, themeColors: true, width: 800 });
-
-const generate = (msg: MessageGenerate): void => {
-    figma.ui.postMessage(msg);
-};
 
 // eslint-disable-next-line max-lines-per-function, max-statements
 const insert = (msg: MessageInsert): void => {
@@ -88,10 +84,6 @@ const insert = (msg: MessageInsert): void => {
 
 figma.ui.onmessage = (msg: Message): void => {
     switch (msg.type) {
-        case "generate":
-            generate(msg);
-            break;
-
         case "insert":
             insert(msg);
             break;
