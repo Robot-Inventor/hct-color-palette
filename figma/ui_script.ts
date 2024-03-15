@@ -2,6 +2,7 @@ import "../common/side_effect";
 import "../common/style.css";
 import { Message, MessageGenerate } from "../types/figma";
 import { Palette } from "../common/palette";
+import { Renderer } from "../common/renderer";
 
 const baseColorInput: HTMLInputElement = document.querySelector("#base_color")!;
 const baseColorPicker: HTMLInputElement = document.querySelector("#base_color_picker")!;
@@ -14,6 +15,7 @@ const sortButton = document.getElementById("sort_button")!;
 const insertButton = document.getElementById("action_button")!;
 
 const palette = new Palette();
+const renderer = new Renderer(paletteOuter);
 
 insertButton.textContent = "Insert to Figma";
 
@@ -71,13 +73,13 @@ generateButton.addEventListener("click", () => {
 
 window.addEventListener("message", (event: MessageEvent<{ pluginMessage: MessageGenerate }>) => {
     const { baseColor, hueSize, toneSize } = event.data.pluginMessage;
-    palette.generate(baseColor, hueSize, toneSize);
-    palette.render(paletteOuter);
+    const paletteData = palette.generate(baseColor, hueSize, toneSize);
+    renderer.renderPalette(paletteData);
 });
 
 sortButton.addEventListener("click", () => {
-    palette.sortPalette();
-    palette.render(paletteOuter);
+    const paletteData = palette.sortPalette();
+    renderer.renderPalette(paletteData);
 });
 
 insertButton.addEventListener("click", () => {
