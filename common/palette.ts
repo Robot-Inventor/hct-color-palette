@@ -23,7 +23,7 @@ class Palette {
      * const palette = generatePalette("#75a3dd", 20, 5);
      */
     // eslint-disable-next-line max-lines-per-function, max-statements
-    public generate(baseColor: string, hueSize: number, toneSize: number): void {
+    public generate(baseColor: string, hueSize: number, toneSize: number): PaletteData {
         /* eslint-disable no-magic-numbers */
         const hueStep = 360 / hueSize;
         const toneStep = 100 / toneSize;
@@ -100,41 +100,7 @@ class Palette {
         palette[0].colors[0].isBaseColor = true;
 
         this.palette = palette;
-    }
-
-    /**
-     * Insert palette to specified HTML element.
-     * @param outer Insert palette to this element.
-     * @param palette Palette data.
-     */
-    // eslint-disable-next-line max-statements
-    public render(outer: HTMLElement): void {
-        const { palette } = this;
-        if (!palette) throw new Error("Palette data is not generated.");
-
-        // Remove old palette from the element.
-        while (outer.firstChild) {
-            outer.removeChild(outer.firstChild);
-        }
-
-        const fragment = document.createDocumentFragment();
-
-        for (const row of palette) {
-            const rowOuter = document.createElement("div");
-            fragment.appendChild(rowOuter);
-
-            for (const color of row.colors) {
-                const div = document.createElement("div");
-                div.style.background = color.hex;
-                div.title = color.hex;
-                if (color.isBaseColor) {
-                    div.classList.add("base_color");
-                }
-                rowOuter.appendChild(div);
-            }
-        }
-
-        outer.appendChild(fragment);
+        return palette;
     }
 
     /**
@@ -142,7 +108,7 @@ class Palette {
      * @param palette Palette data.
      * @returns Sorted palette data.
      */
-    public sortPalette(): void {
+    public sortPalette(): PaletteData {
         const { palette } = this;
         if (!palette) throw new Error("Palette data is not generated.");
 
@@ -156,6 +122,7 @@ class Palette {
         }
 
         this.palette = palette;
+        return palette;
     }
 
     /**
