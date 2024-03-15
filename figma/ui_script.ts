@@ -1,6 +1,7 @@
 import "../common/side_effect";
 import "../common/style.css";
-import { generatePalette, renderPalette, sortPalette } from "../common/palette";
+import { Message, MessageGenerate } from "../types/figma";
+import { Palette } from "../common/palette";
 
 const baseColorInput: HTMLInputElement = document.querySelector("#base_color")!;
 const baseColorPicker: HTMLInputElement = document.querySelector("#base_color_picker")!;
@@ -12,7 +13,7 @@ const paletteOuter = document.getElementById("palette")!;
 const sortButton = document.getElementById("sort_button")!;
 const insertButton = document.getElementById("action_button")!;
 
-let palette: Palette = [];
+const palette = new Palette();
 
 insertButton.textContent = "Insert to Figma";
 
@@ -70,15 +71,17 @@ generateButton.addEventListener("click", () => {
 
 window.addEventListener("message", (event: MessageEvent<{ pluginMessage: MessageGenerate }>) => {
     const { baseColor, hueSize, toneSize } = event.data.pluginMessage;
-    palette = generatePalette(baseColor, hueSize, toneSize);
-    renderPalette(paletteOuter, palette);
+    palette.generate(baseColor, hueSize, toneSize);
+    palette.render(paletteOuter);
 });
 
 sortButton.addEventListener("click", () => {
-    palette = sortPalette(palette);
-    renderPalette(paletteOuter, palette);
+    palette.sortPalette();
+    palette.render(paletteOuter);
 });
 
 insertButton.addEventListener("click", () => {
-    postMessage({ palette, type: "insert" });
+    const paletteData = palette.getPalette();
+    if (!paletteData) throw new Error("Palette data is not generated.");
+    postMessage({ palette: paletteData, type: "insert" });
 });

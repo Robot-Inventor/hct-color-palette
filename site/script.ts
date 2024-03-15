@@ -1,6 +1,6 @@
 import "../common/side_effect";
 import "../common/style.css";
-import { generatePalette, renderPalette, sortPalette } from "../common/palette";
+import { Palette } from "../common/palette";
 import { toPng } from "html-to-image";
 
 const generateButton = document.querySelector("#generate_button")!;
@@ -13,7 +13,7 @@ const toneSizeInput: HTMLInputElement = document.querySelector("#palette_size_to
 const paletteOuter: HTMLElement = document.querySelector("#palette")!;
 const downloadButton = document.querySelector("#action_button")!;
 
-let palette: Palette = [];
+const palette = new Palette();
 
 downloadButton.textContent = "Download as PNG";
 
@@ -46,13 +46,13 @@ generateButton.addEventListener("click", () => {
     const baseColor = baseColorInput.value;
     const hueSize = parseInt(hueSizeInput.value, 10);
     const toneSize = parseInt(toneSizeInput.value, 10);
-    palette = generatePalette(baseColor, hueSize, toneSize);
-    renderPalette(paletteOuter, palette);
+    palette.generate(baseColor, hueSize, toneSize);
+    palette.render(paletteOuter);
 });
 
 sortButton.addEventListener("click", () => {
-    palette = sortPalette(palette);
-    renderPalette(paletteOuter, palette);
+    palette.sortPalette();
+    palette.render(paletteOuter);
 });
 
 downloadButton.addEventListener("click", () => {
