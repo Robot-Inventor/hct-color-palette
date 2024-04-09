@@ -7,7 +7,7 @@ class Renderer {
      * Create a new renderer.
      * @param parent Parent element to render the palette.
      */
-    constructor(parent: HTMLElement) {
+    public constructor(parent: HTMLElement) {
         this.parent = parent;
     }
 

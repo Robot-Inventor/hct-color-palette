@@ -20,7 +20,7 @@ class UI {
     private readonly generateButton = document.querySelector("#generate_button")!;
     private readonly actionButton = document.querySelector("#action_button")!;
 
-    constructor(options: UIOptions) {
+    public constructor(options: UIOptions) {
         const palette = new Palette();
         const renderer = new Renderer(this.paletteOuter);
 

@@ -105,7 +105,6 @@ class Palette {
 
     /**
      * Sort palette data with hue value and tone value.
-     * @param palette Palette data.
      * @returns Sorted palette data.
      */
     public sortPalette(): PaletteData {
