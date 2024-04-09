@@ -21,6 +21,7 @@ const insert = (msg: MessageInsert): void => {
     figma.currentPage.appendChild(frame);
     nodeList.push(frame);
 
+    // eslint-disable-next-line no-useless-assignment
     let positionX = RECT_MARGIN;
     let positionY = RECT_MARGIN;
 
