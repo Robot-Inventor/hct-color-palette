@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "HCT based color palette tool.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
@@ -36,10 +37,8 @@
   "devDependencies": {
     "@figma/eslint-plugin-figma-plugins": "^0.15.0",
     "@figma/plugin-typings": "^1.88.0",
+    "@robot-inventor/eslint-config": "^0.1.1",
     "@types/chroma-js": "^2.1.4",
-    "@typescript-eslint/eslint-plugin": "^7.1.1",
-    "@typescript-eslint/parser": "^7.1.1",
-    "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0"
+    "eslint": "^9.0.0"
   }
 }
