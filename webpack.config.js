@@ -1,7 +1,7 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const HtmlInlineScriptPlugin = require("html-inline-script-webpack-plugin");
+import HtmlInlineScriptPlugin from "html-inline-script-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 
-module.exports = {
+export default {
     mode: "production",
     entry: {
         "site/dist/script": "./site/script.ts",
@@ -10,7 +10,7 @@ module.exports = {
     },
     output: {
         filename: "[name].js",
-        path: __dirname,
+        path: import.meta.dirname,
         publicPath: "./figma/dist/"
     },
     module: {
