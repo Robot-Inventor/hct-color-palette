@@ -19,9 +19,9 @@
                 div.style.display = "inline-block";
                 div.style.visibility = "hidden";
                 div.style.position = "fixed";
-                div.style.fontSize = `${fontSize}px`;
+                div.style.fontSize = `${fontSize.toString()}px`;
                 document.body.appendChild(div);
-                element.style.width = `${div.offsetWidth}px`;
+                element.style.width = `${div.offsetWidth.toString()}px`;
                 div.remove();
             });
         });

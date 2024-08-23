@@ -33,7 +33,7 @@ class Palette {
         const baseChroma = color.chroma;
         const baseTone = color.tone;
 
-        const hueList: Array<number> = [];
+        const hueList: number[] = [];
         const palette: PaletteData = [];
 
         // Generate a list of hue values
@@ -114,10 +114,9 @@ class Palette {
         // eslint-disable-next-line id-length
         palette.sort((a, b) => parseFloat(b.tone.toString()) - parseFloat(a.tone.toString()));
 
-        // eslint-disable-next-line id-length
-        for (let i = 0; i < palette.length; i++) {
+        for (const row of palette) {
             // eslint-disable-next-line id-length
-            palette[i].colors.sort((a, b) => parseFloat(a.hue.toString()) - parseFloat(b.hue.toString()));
+            row.colors.sort((a, b) => parseFloat(a.hue.toString()) - parseFloat(b.hue.toString()));
         }
 
         this.palette = palette;
@@ -133,4 +132,4 @@ class Palette {
     }
 }
 
-export { PaletteData, Palette };
+export { type PaletteData, Palette };

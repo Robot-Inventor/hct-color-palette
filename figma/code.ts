@@ -1,4 +1,4 @@
-import { Message, MessageInsert } from "../types/figma";
+import type { Message, MessageInsert } from "../types/figma";
 
 figma.showUI(__html__, { height: 600, themeColors: true, width: 800 });
 
@@ -43,7 +43,7 @@ const insert = (msg: MessageInsert): void => {
             rect.name = hex;
             rect.cornerRadius = RECT_CORNER_RADIUS;
             // eslint-disable-next-line sort-keys
-            rect.fills = [{ type: "SOLID", color: { r: red, g: green, b: blue } }];
+            rect.fills = [{ type: "SOLID", color: { r: red, g: green, b: blue }, boundVariables: {} }];
 
             if (color.isBaseColor) {
                 /**
@@ -65,7 +65,7 @@ const insert = (msg: MessageInsert): void => {
                 borderRect.name = "Base Color Pointer";
                 borderRect.fills = [];
                 // eslint-disable-next-line sort-keys
-                borderRect.strokes = [{ type: "SOLID", color: { r: red, g: green, b: blue } }];
+                borderRect.strokes = [{ type: "SOLID", color: { r: red, g: green, b: blue }, boundVariables: {} }];
                 borderRect.strokeAlign = "OUTSIDE";
                 // eslint-disable-next-line no-magic-numbers
                 borderRect.strokeWeight = RECT_SIZE * 0.08;

@@ -1,6 +1,7 @@
 import { UI } from "../common/ui";
 import { toPng } from "html-to-image";
 
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const paletteOuter: HTMLElement = document.querySelector("#palette")!;
 
 const onActionButtonClick = (): void => {

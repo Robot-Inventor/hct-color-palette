@@ -1,4 +1,4 @@
-import { PaletteData } from "./palette";
+import type { PaletteData } from "./palette";
 
 class Renderer {
     private parent: HTMLElement;
