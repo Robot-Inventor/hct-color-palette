@@ -1,5 +1,5 @@
-import { Message } from "../types/figma";
-import { PaletteData } from "../common/palette";
+import type { Message } from "../types/figma";
+import type { PaletteData } from "../common/palette";
 import { UI } from "../common/ui";
 
 /**
