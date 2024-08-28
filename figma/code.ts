@@ -43,7 +43,7 @@ const insert = (msg: MessageInsert): void => {
             rect.name = hex;
             rect.cornerRadius = RECT_CORNER_RADIUS;
             // eslint-disable-next-line sort-keys
-            rect.fills = [{ type: "SOLID", color: { r: red, g: green, b: blue }, boundVariables: {} }];
+            rect.fills = [{ type: "SOLID", color: { r: red, g: green, b: blue } }];
 
             if (color.isBaseColor) {
                 /**
@@ -65,7 +65,7 @@ const insert = (msg: MessageInsert): void => {
                 borderRect.name = "Base Color Pointer";
                 borderRect.fills = [];
                 // eslint-disable-next-line sort-keys
-                borderRect.strokes = [{ type: "SOLID", color: { r: red, g: green, b: blue }, boundVariables: {} }];
+                borderRect.strokes = [{ type: "SOLID", color: { r: red, g: green, b: blue } }];
                 borderRect.strokeAlign = "OUTSIDE";
                 // eslint-disable-next-line no-magic-numbers
                 borderRect.strokeWeight = RECT_SIZE * 0.08;
