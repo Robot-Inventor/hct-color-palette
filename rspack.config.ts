@@ -1,7 +1,7 @@
 import { CopyRspackPlugin } from "@rspack/core";
-import HtmlWebpackPlugin from "html-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import HtmlInlineScriptPlugin from "html-inline-script-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 import { defineConfig } from "@rspack/cli";
 import { fileURLToPath } from "url";
 import path from "path";
