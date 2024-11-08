@@ -1,16 +1,40 @@
-import { CopyRspackPlugin } from "@rspack/core";
+import { type Compiler, CopyRspackPlugin } from "@rspack/core";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import HtmlInlineScriptPlugin from "html-inline-script-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { defineConfig } from "@rspack/cli";
 import { fileURLToPath } from "url";
 import path from "path";
+import { watch } from "chokidar";
 
 // eslint-disable-next-line no-underscore-dangle
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isProduction = process.env.NODE_ENV === "production";
 
 const commonPlugins = [new ForkTsCheckerWebpackPlugin()];
+
+class WatchPlugin {
+    // eslint-disable-next-line class-methods-use-this
+    public apply(compiler: Compiler): void {
+        let manifestWatcher: null | ReturnType<typeof watch> = null;
+
+        compiler.hooks.watchRun.tapAsync("WatchPlugin", (_params, callback) => {
+            if (manifestWatcher) {
+                callback();
+                return;
+            }
+
+            manifestWatcher = watch("figma/manifest.json");
+            manifestWatcher.on("change", (pathString: string) => {
+                // eslint-disable-next-line no-console
+                console.log(`Manifest file changed: ${pathString}`);
+                compiler.watching?.invalidate();
+            });
+
+            callback();
+        });
+    }
+}
 
 /* eslint-disable sort-keys */
 const baseConfig = defineConfig({
@@ -79,6 +103,7 @@ const figmaConfig = defineConfig({
                 }
             ]
         }),
+        new WatchPlugin(),
         ...commonPlugins
     ]
 });
