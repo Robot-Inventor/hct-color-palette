@@ -1,4 +1,4 @@
-import type { Message, MessageInsert } from "../types/figma";
+import type { Message, MessageInsert } from "../../types/figma";
 
 figma.showUI(__html__, { height: 600, themeColors: true, width: 800 });
 

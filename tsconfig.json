@@ -4,13 +4,12 @@
     "rootDir": ".",
     "typeRoots": [
       "./node_modules/@figma"
-    ]
+    ],
+    "noEmit": true,
+    "allowImportingTsExtensions": true
   },
   "include": [
-    "./types/**/*.ts",
-    "./site/**/*.ts",
-    "./figma/**/*.ts",
-    "./common/**/*.ts",
+    "./src/**/*.ts",
     "./rspack.*.ts"
   ]
 }

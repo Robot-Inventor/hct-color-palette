@@ -1,6 +1,6 @@
 # Smart Chroma
 
-![cover image](image/cover.png)
+![cover image](src/image/cover.png)
 
 Smart Chroma generates a color palette based on human vision.
 

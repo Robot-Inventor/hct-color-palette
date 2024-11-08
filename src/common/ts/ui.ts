@@ -1,5 +1,5 @@
 // eslint-disable-next-line import-x/no-unassigned-import
-import "./style.css";
+import "../css/style.css";
 // eslint-disable-next-line import-x/no-unassigned-import
 import "./side_effect";
 import { Palette, type PaletteData } from "./palette";
