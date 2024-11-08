@@ -1,3 +1,3 @@
-import { siteConfig } from "./rspack.config";
+import { siteConfig } from "./rspack.config.ts";
 
 export default siteConfig;

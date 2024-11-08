@@ -2,7 +2,7 @@
     "name": "Smart Chroma",
     "id": "1202157980535479255",
     "api": "1.0.0",
-    "main": "code.js",
+    "main": "js/code.js",
     "editorType": ["figma"],
     "ui": "ui.html",
     "documentAccess": "dynamic-page",

@@ -1,4 +1,4 @@
-import { UI } from "../common/ui";
+import { UI } from "../../common/ts/ui";
 import { toPng } from "html-to-image";
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

@@ -24,7 +24,7 @@ class WatchPlugin {
                 return;
             }
 
-            manifestWatcher = watch("figma/manifest.json");
+            manifestWatcher = watch("src/figma/json/manifest.json");
             manifestWatcher.on("change", (pathString: string) => {
                 // eslint-disable-next-line no-console
                 console.log(`Manifest file changed: ${pathString}`);
@@ -79,8 +79,8 @@ const baseConfig = defineConfig({
 const figmaConfig = defineConfig({
     ...baseConfig,
     entry: {
-        "code.js": "./figma/code.ts",
-        "ui_script.js": "./figma/ui_script.ts"
+        "js/code.js": "./src/figma/ts/code.ts",
+        "js/ui_script.js": "./src/figma/ts/ui_script.ts"
     },
     output: {
         ...baseConfig.output,
@@ -88,17 +88,17 @@ const figmaConfig = defineConfig({
     },
     plugins: [
         new HtmlWebpackPlugin({
-            chunks: ["ui_script.js"],
+            chunks: ["js/ui_script.js"],
             publicPath: ".",
             filename: "ui.html",
-            template: "./common/ui.html",
+            template: "./src/common/html/ui.html",
             inject: "body"
         }),
         new HtmlInlineScriptPlugin(),
         new CopyRspackPlugin({
             patterns: [
                 {
-                    from: "./figma/manifest.json",
+                    from: "./src/figma/json/manifest.json",
                     to: "./manifest.json"
                 }
             ]
@@ -111,7 +111,7 @@ const figmaConfig = defineConfig({
 const siteConfig = defineConfig({
     ...baseConfig,
     entry: {
-        "script.js": "./site/script.ts"
+        "js/script.js": "./src/site/ts/script.ts"
     },
     devServer: {
         static: {
@@ -129,10 +129,11 @@ const siteConfig = defineConfig({
     },
     plugins: [
         new HtmlWebpackPlugin({
-            chunks: ["script.js"],
+            chunks: ["js/script.js"],
             publicPath: ".",
             filename: "index.html",
-            template: "./common/ui.html"
+            template: "./src/common/html/ui.html",
+            favicon: "./src/image/icon.svg"
         }),
         ...commonPlugins
     ]

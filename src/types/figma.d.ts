@@ -1,4 +1,4 @@
-import type { PaletteData } from "../common/palette";
+import type { PaletteData } from "../common/ts/palette";
 
 /**
  * Message to insert palette to Figma document.

@@ -1,6 +1,6 @@
-import type { Message } from "../types/figma";
-import type { PaletteData } from "../common/palette";
-import { UI } from "../common/ui";
+import type { Message } from "../../types/figma";
+import type { PaletteData } from "../../common/ts/palette";
+import { UI } from "../../common/ts/ui";
 
 /**
  * Send message to the backend script.
