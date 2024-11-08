@@ -5,8 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
+    "build": "cross-env NODE_OPTIONS=--experimental-transform-types NODE_ENV=production rspack build",
+    "dev": "cross-env NODE_OPTIONS=--experimental-transform-types NODE_ENV=development rspack build --watch",
+    "serve": "cross-env NODE_OPTIONS=--experimental-transform-types NODE_ENV=development rspack serve --config rspack.serve.config.ts",
     "lint": "eslint ./**/*.ts",
     "format": "prettier --write ./**/*.ts",
     "format:check": "prettier --check ./**/*.ts"
@@ -23,16 +24,15 @@
   "homepage": "https://github.com/Robot-Inventor/hct-color-palette#readme",
   "dependencies": {
     "@material/material-color-utilities": "^0.3.0",
+    "@rspack/cli": "^1.1.0",
+    "@rspack/core": "^1.1.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^7.0.0",
     "html-inline-script-webpack-plugin": "^3.1.0",
     "html-to-image": "^1.11.7",
-    "html-webpack-plugin": "^5.5.0",
     "prettier": "^3.2.5",
     "style-loader": "^4.0.0",
-    "ts-loader": "^9.4.2",
-    "typescript": "^5.0.0",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
+    "typescript": "^5.0.0"
   },
   "devDependencies": {
     "@figma/eslint-plugin-figma-plugins": "^0.15.0",
@@ -40,6 +40,8 @@
     "@robot-inventor/eslint-config": "^6.0.0",
     "@robot-inventor/tsconfig-base": "^1.1.0",
     "@types/chroma-js": "^2.1.4",
-    "eslint": "^9.0.0"
+    "eslint": "^9.0.0",
+    "fork-ts-checker-webpack-plugin": "^9.0.2",
+    "html-webpack-plugin": "^5.6.3"
   }
 }
