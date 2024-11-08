@@ -27,27 +27,14 @@ Second, set up a local server and open ``site/dist/index.html``.
 
 ## Development
 
-### Build
+Here is a list of commands you can use during development.
 
-```powershell
+```bash
 npm run build
-```
-
-### Lint
-
-```powershell
+npm run dev # Watch all files
+npm run serve # Watch only the site files and start a local server
 npm run lint
-```
-
-### Format
-
-```powershell
 npm run format
-```
-
-or
-
-```powershell
 npm run format:check
 ```
 
