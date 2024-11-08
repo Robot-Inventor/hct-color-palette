@@ -8,7 +8,7 @@
     "build": "cross-env NODE_OPTIONS=--experimental-transform-types NODE_ENV=production rspack build",
     "dev": "cross-env NODE_OPTIONS=--experimental-transform-types NODE_ENV=development rspack build --watch",
     "serve": "cross-env NODE_OPTIONS=--experimental-transform-types NODE_ENV=development rspack serve --config rspack.serve.config.ts",
-    "lint": "eslint ./**/*.ts",
+    "lint": "eslint ./**/*.ts ./rspack.*.ts",
     "format": "prettier --write ./**/*.ts",
     "format:check": "prettier --check ./**/*.ts"
   },

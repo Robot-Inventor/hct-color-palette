@@ -10,6 +10,7 @@
     "./types/**/*.ts",
     "./site/**/*.ts",
     "./figma/**/*.ts",
-    "./common/**/*.ts"
+    "./common/**/*.ts",
+    "./rspack.*.ts"
   ]
 }
