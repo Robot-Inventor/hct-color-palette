@@ -9,7 +9,7 @@ import { watch } from "chokidar";
 
 // eslint-disable-next-line no-underscore-dangle
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const isProduction = process.env.NODE_ENV === "production";
+const isProduction = process.env["NODE_ENV"] === "production";
 
 const commonPlugins = [new ForkTsCheckerWebpackPlugin()];
 

@@ -38,6 +38,7 @@
     "@figma/eslint-plugin-figma-plugins": "^0.15.0",
     "@figma/plugin-typings": "^1.88.0",
     "@robot-inventor/eslint-config": "^6.0.0",
+    "@robot-inventor/ts-utils": "^0.6.1",
     "@robot-inventor/tsconfig-base": "^4.0.0",
     "@types/chroma-js": "^2.1.4",
     "@types/node": "^22.10.2",

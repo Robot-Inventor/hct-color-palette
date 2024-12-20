@@ -14,11 +14,6 @@ const insert = (msg: MessageInsert): void => {
      * Frame for outer of palette.
      */
     const frame = figma.createFrame();
-    if (!msg.palette[0]) {
-        // eslint-disable-next-line no-console
-        console.error("Palette is empty.");
-        return;
-    }
     const frameWidth = (RECT_SIZE + RECT_MARGIN) * msg.palette[0].colors.length + RECT_MARGIN;
     const frameHeight = (RECT_SIZE + RECT_MARGIN) * msg.palette.length + RECT_MARGIN;
     frame.resize(frameWidth, frameHeight);
