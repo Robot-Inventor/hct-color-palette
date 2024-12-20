@@ -1,8 +1,9 @@
 import { Hct, argbFromHex, hexFromArgb } from "@material/material-color-utilities";
+import type { NonEmptyArray } from "@robot-inventor/ts-utils";
 
-type PaletteData = Array<{
+type PaletteData = NonEmptyArray<{
     tone: number;
-    colors: Array<{
+    colors: NonEmptyArray<{
         hex: string;
         hue: number;
         isBaseColor: boolean;
@@ -33,11 +34,8 @@ class Palette {
         const baseChroma = color.chroma;
         const baseTone = color.tone;
 
-        const hueList: number[] = [];
-        const palette: PaletteData = [];
+        const hueList: NonEmptyArray<number> = [color.hue] as const;
 
-        // Generate a list of hue values
-        hueList.push(color.hue);
         /* eslint-disable no-magic-numbers */
         // eslint-disable-next-line id-length
         for (let i = 0; i < hueSize - 1; i++) {
@@ -59,11 +57,15 @@ class Palette {
                 hue,
                 isBaseColor: false
             };
-        });
-        palette.push({
-            colors: row,
-            tone: baseTone
-        });
+        }) as PaletteData[number]["colors"];
+
+        const palette: PaletteData = [
+            {
+                colors: row,
+                tone: baseTone
+            }
+        ] as const;
+
         /* eslint-disable no-magic-numbers */
         // eslint-disable-next-line id-length
         for (let i = 0; i < toneSize - 1; i++) {
@@ -88,7 +90,8 @@ class Palette {
                     hue,
                     isBaseColor: false
                 };
-            });
+            }) as PaletteData[number]["colors"];
+
             palette.push({
                 colors: row,
                 tone
