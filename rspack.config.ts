@@ -1,4 +1,9 @@
-import { type Compiler, CopyRspackPlugin } from "@rspack/core";
+import {
+    type Compiler,
+    CopyRspackPlugin,
+    LightningCssMinimizerRspackPlugin,
+    SwcJsMinimizerRspackPlugin
+} from "@rspack/core";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import HtmlInlineScriptPlugin from "html-inline-script-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
@@ -43,6 +48,14 @@ const baseConfig = defineConfig({
     output: {
         filename: "[name]",
         clean: true
+    },
+    optimization: {
+        minimizer: [
+            new SwcJsMinimizerRspackPlugin({
+                extractComments: true
+            }),
+            new LightningCssMinimizerRspackPlugin({})
+        ]
     },
     module: {
         rules: [
