@@ -40,7 +40,7 @@
     "@robot-inventor/ts-utils": "^0.8.0",
     "@robot-inventor/tsconfig-base": "^6.0.0",
     "@types/chroma-js": "^3.0.0",
-    "@types/node": "^22.10.2",
+    "@types/node": "^24.2.1",
     "chokidar": "^4.0.1",
     "eslint": "^9.0.0",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
