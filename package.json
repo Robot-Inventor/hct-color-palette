@@ -38,7 +38,7 @@
     "@figma/plugin-typings": "^1.88.0",
     "@robot-inventor/eslint-config": "^11.0.0",
     "@robot-inventor/ts-utils": "^0.8.0",
-    "@robot-inventor/tsconfig-base": "^6.0.0",
+    "@robot-inventor/tsconfig-base": "^7.0.0",
     "@types/chroma-js": "^3.0.0",
     "@types/node": "^25.0.2",
     "chokidar": "^5.0.0",
