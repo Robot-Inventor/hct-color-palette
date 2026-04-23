@@ -46,5 +46,8 @@
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "html-webpack-plugin": "^5.6.3",
     "typescript": "^5.9.2"
+  },
+  "overrides": {
+      "zod-validation-error": "^5.0.0"
   }
 }
