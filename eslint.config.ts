@@ -7,7 +7,7 @@ export default [
             "id-length": [
                 "error",
                 {
-                    "properties": "never"
+                    properties: "never"
                 }
             ]
         }
