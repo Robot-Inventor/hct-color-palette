@@ -1,15 +1,10 @@
 {
-  "extends": "@robot-inventor/tsconfig-base/bundler.json",
-  "compilerOptions": {
-    "rootDir": ".",
-    "typeRoots": [
-      "./node_modules/@figma"
-    ],
-    "noEmit": true,
-    "allowImportingTsExtensions": true
-  },
-  "include": [
-    "./src/**/*.ts",
-    "./rspack.*.ts"
-  ]
+    "extends": "@robot-inventor/tsconfig-base/bundler.json",
+    "compilerOptions": {
+        "rootDir": ".",
+        "types": ["@types/node", "@figma/plugin-typings"],
+        "noEmit": true,
+        "allowImportingTsExtensions": true
+    },
+    "include": ["./src/**/*.ts", "./rspack.*.ts"]
 }
