@@ -8,8 +8,8 @@ import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import HtmlInlineScriptPlugin from "html-inline-script-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { defineConfig } from "@rspack/cli";
-import { fileURLToPath } from "url";
-import path from "path";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
 import { watch } from "chokidar";
 
 // eslint-disable-next-line no-underscore-dangle
