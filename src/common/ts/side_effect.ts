@@ -9,7 +9,7 @@
      */
     const adjustInputWidth = (): void => {
         document.querySelectorAll("input").forEach((element) => {
-            // eslint-disable-next-line max-statements
+            // oxlint-disable-next-line max-statements
             element.addEventListener("input", () => {
                 const inputElementStyle = getComputedStyle(element);
                 const fontSize = parseFloat(inputElementStyle.fontSize.replace("px", ""));

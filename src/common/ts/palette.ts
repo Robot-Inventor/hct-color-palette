@@ -23,12 +23,12 @@ class Palette {
      * // Generate a color palette with #75a3dd as the base color, 20 hues and 5 tones.
      * const palette = generatePalette("#75a3dd", 20, 5);
      */
-    // eslint-disable-next-line max-lines-per-function, max-statements
+    // oxlint-disable-next-line max-lines-per-function, max-statements
     public generate(baseColor: string, hueSize: number, toneSize: number): PaletteData {
-        /* eslint-disable no-magic-numbers */
+        /* oxlint-disable no-magic-numbers */
         const hueStep = 360 / hueSize;
         const toneStep = 100 / toneSize;
-        /* eslint-enable no-magic-numbers */
+        /* oxlint-enable no-magic-numbers */
 
         const color = Hct.fromInt(argbFromHex(baseColor));
         const baseChroma = color.chroma;
@@ -36,8 +36,8 @@ class Palette {
 
         const hueList: NonEmptyArray<number> = [color.hue] as const;
 
-        /* eslint-disable no-magic-numbers */
-        // eslint-disable-next-line id-length
+        /* oxlint-disable no-magic-numbers */
+        // oxlint-disable-next-line id-length
         for (let i = 0; i < hueSize - 1; i++) {
             if (color.hue + hueStep <= 360) {
                 color.hue += hueStep;
@@ -46,7 +46,7 @@ class Palette {
             }
             hueList.push(color.hue);
         }
-        /* eslint-enable no-magic-numbers */
+        /* oxlint-enable no-magic-numbers */
 
         const row = hueList.map((hue) => {
             color.hue = hue;
@@ -66,19 +66,19 @@ class Palette {
             }
         ] as const;
 
-        /* eslint-disable no-magic-numbers */
-        // eslint-disable-next-line id-length
+        /* oxlint-disable no-magic-numbers */
+        // oxlint-disable-next-line id-length
         for (let i = 0; i < toneSize - 1; i++) {
             if (color.tone + toneStep <= 100) {
                 color.tone += toneStep;
             } else {
                 color.tone += toneStep - 100;
             }
-            /* eslint-enable no-magic-numbers */
+            /* oxlint-enable no-magic-numbers */
 
             const { tone } = color;
 
-            // eslint-disable-next-line no-shadow
+            // oxlint-disable-next-line no-shadow
             const row = hueList.map((hue) => {
                 // If chroma and tone are not re-set, their values will shift slightly
                 color.hue = hue;
@@ -114,11 +114,11 @@ class Palette {
         const { palette } = this;
         if (!palette) throw new Error("Palette data is not generated.");
 
-        // eslint-disable-next-line id-length
+        // oxlint-disable-next-line id-length
         palette.sort((a, b) => parseFloat(b.tone.toString()) - parseFloat(a.tone.toString()));
 
         for (const row of palette) {
-            // eslint-disable-next-line id-length
+            // oxlint-disable-next-line id-length
             row.colors.sort((a, b) => parseFloat(a.hue.toString()) - parseFloat(b.hue.toString()));
         }
 

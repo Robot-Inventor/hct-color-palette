@@ -1,6 +1,6 @@
-// eslint-disable-next-line import-x/no-unassigned-import
+// oxlint-disable-next-line import-x/no-unassigned-import
 import "../css/style.css";
-// eslint-disable-next-line import-x/no-unassigned-import
+// oxlint-disable-next-line import-x/no-unassigned-import
 import "./side_effect";
 import { Palette, type PaletteData } from "./palette";
 import { Renderer } from "./renderer";
@@ -12,7 +12,7 @@ interface UIOptions {
 }
 
 class UI {
-    /* eslint-disable @typescript-eslint/no-non-null-assertion */
+    /* oxlint-disable @typescript-eslint/no-non-null-assertion */
     private readonly baseColorInput = document.querySelector<HTMLInputElement>("#base_color")!;
     private readonly hueSizeInput = document.querySelector<HTMLInputElement>("#palette_size_hue")!;
     private readonly toneSizeInput = document.querySelector<HTMLInputElement>("#palette_size_tone")!;
@@ -22,7 +22,7 @@ class UI {
     private readonly paletteOuter = document.querySelector<HTMLElement>("#palette")!;
     private readonly generateButton = document.querySelector("#generate_button")!;
     private readonly actionButton = document.querySelector("#action_button")!;
-    /* eslint-enable @typescript-eslint/no-non-null-assertion */
+    /* oxlint-enable @typescript-eslint/no-non-null-assertion */
 
     public constructor(options: UIOptions) {
         const palette = new Palette();

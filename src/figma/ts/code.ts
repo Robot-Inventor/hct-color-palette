@@ -2,7 +2,7 @@ import type { Message, MessageInsert } from "../../types/figma";
 
 figma.showUI(__html__, { height: 600, themeColors: true, width: 800 });
 
-// eslint-disable-next-line max-lines-per-function, max-statements
+// oxlint-disable-next-line max-lines-per-function, max-statements
 const insert = (msg: MessageInsert): void => {
     const RECT_SIZE = 100;
     const RECT_MARGIN = 25;
@@ -21,7 +21,7 @@ const insert = (msg: MessageInsert): void => {
     figma.currentPage.appendChild(frame);
     nodeList.push(frame);
 
-    // eslint-disable-next-line no-useless-assignment
+    // oxlint-disable-next-line no-useless-assignment
     let positionX = RECT_MARGIN;
     let positionY = RECT_MARGIN;
 
@@ -30,11 +30,11 @@ const insert = (msg: MessageInsert): void => {
 
         for (const color of row.colors) {
             const { hex } = color;
-            /* eslint-disable no-magic-numbers */
+            /* oxlint-disable no-magic-numbers */
             const red = parseInt(hex.substring(1, 3), 16) / 255;
             const green = parseInt(hex.substring(3, 5), 16) / 255;
             const blue = parseInt(hex.substring(5), 16) / 255;
-            /* eslint-enable no-magic-numbers */
+            /* oxlint-enable no-magic-numbers */
 
             const rect = figma.createRectangle();
             rect.x = positionX;
@@ -42,7 +42,7 @@ const insert = (msg: MessageInsert): void => {
             rect.resize(RECT_SIZE, RECT_SIZE);
             rect.name = hex;
             rect.cornerRadius = RECT_CORNER_RADIUS;
-            // eslint-disable-next-line sort-keys
+            // oxlint-disable-next-line sort-keys
             rect.fills = [{ type: "SOLID", color: { r: red, g: green, b: blue } }];
 
             if (color.isBaseColor) {
@@ -56,18 +56,18 @@ const insert = (msg: MessageInsert): void => {
                 borderRect.cornerRadius = RECT_CORNER_RADIUS;
                 borderRect.resize(RECT_SIZE, RECT_SIZE);
 
-                /* eslint-disable no-magic-numbers */
+                /* oxlint-disable no-magic-numbers */
                 rect.resize(RECT_SIZE * 0.9, RECT_SIZE * 0.9);
                 rect.x += RECT_SIZE * 0.05;
                 rect.y += RECT_SIZE * 0.05;
-                /* eslint-enable no-magic-numbers */
+                /* oxlint-enable no-magic-numbers */
 
                 borderRect.name = "Base Color Pointer";
                 borderRect.fills = [];
-                // eslint-disable-next-line sort-keys
+                // oxlint-disable-next-line sort-keys
                 borderRect.strokes = [{ type: "SOLID", color: { r: red, g: green, b: blue } }];
                 borderRect.strokeAlign = "OUTSIDE";
-                // eslint-disable-next-line no-magic-numbers
+                // oxlint-disable-next-line no-magic-numbers
                 borderRect.strokeWeight = RECT_SIZE * 0.08;
 
                 frame.appendChild(borderRect);
@@ -94,7 +94,7 @@ figma.ui.onmessage = (msg: Message): void => {
             break;
 
         default:
-            // eslint-disable-next-line no-console
+            // oxlint-disable-next-line no-console
             console.error("Unknown message type sent by UI.");
             break;
     }

@@ -1,7 +1,7 @@
 import { UI } from "../../common/ts/ui";
 import { toPng } from "html-to-image";
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+// oxlint-disable-next-line @typescript-eslint/no-non-null-assertion
 const paletteOuter: HTMLElement = document.querySelector("#palette")!;
 
 const onActionButtonClick = (): void => {
@@ -15,9 +15,9 @@ const onActionButtonClick = (): void => {
 };
 
 const onErrorMessage = (message: string): void => {
-    // eslint-disable-next-line no-console
+    // oxlint-disable-next-line no-console
     console.error(message);
-    // eslint-disable-next-line no-alert
+    // oxlint-disable-next-line no-alert
     alert(message);
 };
 

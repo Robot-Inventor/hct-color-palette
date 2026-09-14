@@ -12,14 +12,14 @@ import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { watch } from "chokidar";
 
-// eslint-disable-next-line no-underscore-dangle
+// oxlint-disable-next-line no-underscore-dangle
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isProduction = process.env["NODE_ENV"] === "production";
 
 const commonPlugins = [new ForkTsCheckerWebpackPlugin()];
 
 class WatchPlugin {
-    // eslint-disable-next-line class-methods-use-this
+    // oxlint-disable-next-line class-methods-use-this
     public apply(compiler: Compiler): void {
         let manifestWatcher: null | ReturnType<typeof watch> = null;
 
@@ -31,7 +31,7 @@ class WatchPlugin {
 
             manifestWatcher = watch("src/figma/json/manifest.json");
             manifestWatcher.on("change", (pathString: string) => {
-                // eslint-disable-next-line no-console
+                // oxlint-disable-next-line no-console
                 console.log(`Manifest file changed: ${pathString}`);
                 compiler.watching?.invalidate();
             });
@@ -41,7 +41,7 @@ class WatchPlugin {
     }
 }
 
-/* eslint-disable sort-keys */
+/* oxlint-disable sort-keys */
 const baseConfig = defineConfig({
     mode: isProduction ? "production" : "development",
     devtool: isProduction ? false : "source-map",
@@ -151,7 +151,7 @@ const siteConfig = defineConfig({
         ...commonPlugins
     ]
 });
-/* eslint-enable sort-keys */
+/* oxlint-enable sort-keys */
 
 export { siteConfig };
 export default [figmaConfig, siteConfig];
