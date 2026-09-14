@@ -60,6 +60,12 @@ const baseConfig = defineConfig({
     module: {
         rules: [
             {
+                test: /\.m?js$/u,
+                resolve: {
+                    fullySpecified: false
+                }
+            },
+            {
                 test: /\.ts$/u,
                 exclude: [/node_modules/u],
                 loader: "builtin:swc-loader",
