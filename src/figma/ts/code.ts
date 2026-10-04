@@ -2,7 +2,7 @@ import type { Message, MessageInsert } from "../../types/figma";
 
 figma.showUI(__html__, { height: 600, themeColors: true, width: 800 });
 
-// oxlint-disable-next-line max-lines-per-function, max-statements
+// oxlint-disable-next-line max-statements
 const insert = (msg: MessageInsert): void => {
     const RECT_SIZE = 100;
     const RECT_MARGIN = 25;

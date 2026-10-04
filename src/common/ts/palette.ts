@@ -23,7 +23,7 @@ class Palette {
      * // Generate a color palette with #75a3dd as the base color, 20 hues and 5 tones.
      * const palette = generatePalette("#75a3dd", 20, 5);
      */
-    // oxlint-disable-next-line max-lines-per-function, max-statements
+    // oxlint-disable-next-line max-statements
     public generate(baseColor: string, hueSize: number, toneSize: number): PaletteData {
         /* oxlint-disable no-magic-numbers */
         const hueStep = 360 / hueSize;

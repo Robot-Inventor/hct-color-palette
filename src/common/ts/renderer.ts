@@ -15,7 +15,6 @@ class Renderer {
      * Render palette to the parent element.
      * @param palette Palette data to render.
      */
-    // oxlint-disable-next-line max-statements
     public renderPalette(palette: PaletteData): void {
         this.clearPalette();
 
