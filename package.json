@@ -41,7 +41,7 @@
     "@robot-inventor/tsconfig-base": "^7.0.0",
     "@rspack/dev-server": "^2.0.0",
     "@types/chroma-js": "^3.0.0",
-    "@types/node": "^25.0.2",
+    "@types/node": "^26.6.4",
     "chokidar": "^5.0.0",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "html-webpack-plugin": "^5.6.3",
