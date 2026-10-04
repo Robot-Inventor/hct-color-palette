@@ -1,4 +1,3 @@
-// oxlint-disable-next-line import-x/no-unassigned-import
 import "../css/style.css";
 // oxlint-disable-next-line import-x/no-unassigned-import
 import "./side_effect";
