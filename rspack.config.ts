@@ -84,7 +84,9 @@ const baseConfig = defineConfig({
                     "style-loader",
                     {
                         loader: "css-loader",
-                        options: { url: false }
+                        options: {
+                            url: false
+                        }
                     }
                 ]
             }
