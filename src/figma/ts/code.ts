@@ -1,6 +1,10 @@
 import type { Message, MessageInsert } from "../../types/figma";
 
-figma.showUI(__html__, { height: 600, themeColors: true, width: 800 });
+figma.showUI(__html__, {
+    height: 600,
+    themeColors: true,
+    width: 800
+});
 
 // oxlint-disable-next-line max-statements
 const insert = (msg: MessageInsert): void => {
@@ -42,8 +46,16 @@ const insert = (msg: MessageInsert): void => {
             rect.resize(RECT_SIZE, RECT_SIZE);
             rect.name = hex;
             rect.cornerRadius = RECT_CORNER_RADIUS;
-            // oxlint-disable-next-line sort-keys
-            rect.fills = [{ type: "SOLID", color: { r: red, g: green, b: blue } }];
+            rect.fills = [
+                {
+                    color: {
+                        b: blue,
+                        g: green,
+                        r: red
+                    },
+                    type: "SOLID"
+                }
+            ];
 
             if (color.isBaseColor) {
                 /**
@@ -64,8 +76,16 @@ const insert = (msg: MessageInsert): void => {
 
                 borderRect.name = "Base Color Pointer";
                 borderRect.fills = [];
-                // oxlint-disable-next-line sort-keys
-                borderRect.strokes = [{ type: "SOLID", color: { r: red, g: green, b: blue } }];
+                borderRect.strokes = [
+                    {
+                        color: {
+                            b: blue,
+                            g: green,
+                            r: red
+                        },
+                        type: "SOLID"
+                    }
+                ];
                 borderRect.strokeAlign = "OUTSIDE";
                 // oxlint-disable-next-line no-magic-numbers
                 borderRect.strokeWeight = RECT_SIZE * 0.08;

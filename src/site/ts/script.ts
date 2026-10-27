@@ -25,6 +25,6 @@ const UIOptions = {
     actionButtonLabel: "Download as PNG",
     onActionButtonClick,
     onErrorMessage
-};
+} as const;
 
 new UI(UIOptions);
