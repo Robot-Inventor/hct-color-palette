@@ -18,7 +18,7 @@
     "build": "cross-env NODE_ENV=production rspack build",
     "dev": "cross-env NODE_ENV=development rspack build --watch",
     "serve": "cross-env NODE_ENV=development rspack serve --config rspack.serve.config.ts",
-    "lint": "oxlint ./src ./rspack.*.ts",
+    "lint": "oxlint ./src \"./rspack.*.ts\"",
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check ."
   },
