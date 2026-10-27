@@ -30,6 +30,6 @@ const UIOptions = {
     actionButtonLabel: "Insert to Figma",
     onActionButtonClick,
     onErrorMessage
-};
+} as const;
 
 new UI(UIOptions);
