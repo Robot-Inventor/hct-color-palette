@@ -23,7 +23,7 @@ npm install
 npm run build
 ```
 
-Second, set up a local server and open ``site/dist/index.html``.
+Second, set up a local server and open `site/dist/index.html`.
 
 ## Development
 
