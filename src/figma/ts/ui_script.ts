@@ -23,6 +23,7 @@ const onErrorMessage = (message: string): void => {
         },
         type: "notify"
     } as const;
+
     postMessage(messageData);
 };
 

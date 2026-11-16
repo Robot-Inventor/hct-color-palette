@@ -31,6 +31,7 @@ class Renderer {
                 if (color.isBaseColor) {
                     div.classList.add("base_color");
                 }
+
                 rowOuter.appendChild(div);
             }
         }

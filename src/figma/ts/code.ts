@@ -14,9 +14,7 @@ const insert = (msg: MessageInsert): void => {
 
     const nodeList: SceneNode[] = [];
 
-    /**
-     * Frame for outer of palette.
-     */
+    // Frame for outer of palette.
     const frame = figma.createFrame();
     const frameWidth = (RECT_SIZE + RECT_MARGIN) * msg.palette[0].colors.length + RECT_MARGIN;
     const frameHeight = (RECT_SIZE + RECT_MARGIN) * msg.palette.length + RECT_MARGIN;
@@ -49,9 +47,11 @@ const insert = (msg: MessageInsert): void => {
             rect.fills = [
                 {
                     color: {
+                        /* oxlint-disable id-length */
                         b: blue,
                         g: green,
                         r: red
+                        /* oxlint-enable id-length */
                     },
                     type: "SOLID"
                 }
@@ -79,13 +79,16 @@ const insert = (msg: MessageInsert): void => {
                 borderRect.strokes = [
                     {
                         color: {
+                            /* oxlint-disable id-length */
                             b: blue,
                             g: green,
                             r: red
+                            /* oxlint-enable id-length */
                         },
                         type: "SOLID"
                     }
                 ];
+
                 borderRect.strokeAlign = "OUTSIDE";
                 // oxlint-disable-next-line no-magic-numbers
                 borderRect.strokeWeight = RECT_SIZE * 0.08;
@@ -96,6 +99,7 @@ const insert = (msg: MessageInsert): void => {
             frame.appendChild(rect);
             positionX += RECT_SIZE + RECT_MARGIN;
         }
+
         positionY += RECT_SIZE + RECT_MARGIN;
     }
 

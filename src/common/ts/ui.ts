@@ -38,6 +38,7 @@ class UI {
             if (!this.validateForm()) {
                 const errorMessage = "Parameters are invalid. Please check the form.";
                 options.onErrorMessage(errorMessage);
+
                 return;
             }
 
@@ -53,8 +54,10 @@ class UI {
             const paletteData = palette.getPalette();
             if (!paletteData) {
                 options.onErrorMessage("Palette data is not generated.");
+
                 return;
             }
+
             options.onActionButtonClick(paletteData);
         });
     }
