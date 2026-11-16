@@ -37,13 +37,13 @@ class Palette {
         const hueList: NonEmptyArray<number> = [color.hue] as const;
 
         /* oxlint-disable no-magic-numbers */
-        // oxlint-disable-next-line id-length
         for (let i = 0; i < hueSize - 1; i++) {
             if (color.hue + hueStep <= 360) {
                 color.hue += hueStep;
             } else {
                 color.hue += hueStep - 360;
             }
+
             hueList.push(color.hue);
         }
         /* oxlint-enable no-magic-numbers */
@@ -52,6 +52,7 @@ class Palette {
             color.hue = hue;
             color.chroma = baseChroma;
             color.tone = baseTone;
+
             return {
                 hex: hexFromArgb(color.toInt()),
                 hue,
@@ -67,7 +68,6 @@ class Palette {
         ] as const;
 
         /* oxlint-disable no-magic-numbers */
-        // oxlint-disable-next-line id-length
         for (let i = 0; i < toneSize - 1; i++) {
             if (color.tone + toneStep <= 100) {
                 color.tone += toneStep;
@@ -103,6 +103,7 @@ class Palette {
         palette[0].colors[0].isBaseColor = true;
 
         this.palette = palette;
+
         return palette;
     }
 
@@ -123,6 +124,7 @@ class Palette {
         }
 
         this.palette = palette;
+
         return palette;
     }
 
