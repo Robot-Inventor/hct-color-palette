@@ -44,7 +44,7 @@
     "chokidar": "^6.0.0",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "html-webpack-plugin": "^5.6.3",
-    "oxfmt": "^0.79.0",
+    "oxfmt": "^0.80.0",
     "oxlint": "^1.83.0",
     "typescript": "^7.0.0"
   }
